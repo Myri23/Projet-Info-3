@@ -333,7 +333,10 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
 
 
 
-int main() {
+int main(int argc, char** argv) {
+    FILE *fichier=fopen("tempT.txt", "r");
+    FILE *res=fopen("resultT.txt", "w");
+    
     
     return 0;
 }
