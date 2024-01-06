@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
  
 typedef struct VILLE{
     char nomVille; //nom de la ville
@@ -12,6 +13,14 @@ typedef struct AVL {
     struct AVL* pDroit;
     int equilibre;
 } AVL;
+
+//pb1: on doit pouvoir comparer des entites donc trouver comment appeler le int dans la structure ville (ok)
+//pb2: trouver comment creer un avl a partir des donnees du fichier (ok)
+//pb3: coder un parcours infixe inversé (pour avoir l'ordre decroissant) (ok)
+//attention le parcours infixe doit afficher le nom de la ville et le nb de fois qu'elle est traversee (ok)
+//pb4: ville de depart ou d'arrivee utiliser un fichier a 3 colonnes 
+//pb5: 
+
 
 AVL* creerAVL(VILLE v) {
     AVL* pNouveau = malloc(sizeof(AVL));
@@ -62,7 +71,7 @@ AVL* insertionAVL(AVL* pAVL, VILLE v, int* h) {
     if (pAVL == NULL) {
         *h = 1;
         return creerAVL(v);
-    } else if (v < pAVL->ville) {
+    } else if (v.traversee < pAVL->ville) {
         pAVL->pGauche = insertionAVL(pAVL->pGauche, v, h);
         if (*h != 0) {
             pAVL->equilibre = pAVL->equilibre - *h;
@@ -72,7 +81,7 @@ AVL* insertionAVL(AVL* pAVL, VILLE v, int* h) {
                 *h = 1;
             }
         }
-    } else if (v > pAVL->ville) {
+    } else if (v.traversee > pAVL->ville) {
         pAVL->pDroit = insertionAVL(pAVL->pDroit, v, h);
         if (*h != 0) {
             pAVL->equilibre = pAVL->equilibre + *h;
@@ -117,17 +126,17 @@ void ajoutFilsGauche(AVL* p, VILLE v) {
 void ajoutABR(AVL* p, VILLE v) {
     if (!estVide(p)) {
         if (!recherche(p, v)) {
-            while ((v < p->ville && aFilsGauche(p)) || (v > p->ville && aFilsDroit(p))) {
-                if (v < p->ville) {
+            while ((v.traversee < p->ville.traversee && aFilsGauche(p)) || (v.traversee > p->ville.traversee && aFilsDroit(p))) {
+                if (v.traversee < p->ville.traversee) {
                     p = p->pGauche;
                 } else {
                     p = p->pDroit;
                 }
             }
  
-            if (v < p->ville) {
+            if (v.traversee < p->ville.traversee) {
                 ajoutFilsGauche(p, v);
-            } else if (v > p->ville) {
+            } else if (v.traversee > p->ville.traversee) {
                 ajoutFilsDroit(p, v);
             }
         }
@@ -204,9 +213,9 @@ AVL* RetirerABRGauche(AVL* p, VILLE v) {
     if (p == NULL) {
         return p;
     }
-    if (v > p->ville) {
+    if (v.traversee > p->ville.traversee) {
         p->pDroit = RetirerABRGauche(p->pDroit, v);
-    } else if (v < p->ville) {
+    } else if (v.traversee < p->ville.traversee) {
         p->pGauche = RetirerABRGauche(p->pGauche, v);
     } else {
         if (p->pGauche == NULL) {
@@ -229,9 +238,9 @@ AVL* RetirerABRDroit(AVL* p, VILLE v) {
     if (p == NULL) {
         return p;
     }
-    if (v > p->ville) {
+    if (v.traversee > p->ville.traversee) {
         p->pDroit = RetirerABRDroit(p->pDroit, v);
-    } else if (v < p->ville) {
+    } else if (v.traversee < p->ville.traversee) {
         p->pGauche = RetirerABRDroit(p->pGauche, v);
     } else {
         if (p->pGauche == NULL) {
@@ -300,9 +309,9 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
     if (pAVL == NULL) {
         *h = 1;
         return pAVL;
-    } else if (v > pAVL->ville) {
+    } else if (v.traversee > pAVL->ville.traversee) {
         pAVL->pDroit = suppressionAVL(pAVL->pDroit, v, h);
-    } else if (v < pAVL->ville) {
+    } else if (v.traversee < pAVL->ville.traversee) {
         pAVL->pGauche = suppressionAVL(pAVL->pGauche, v, h);
         *h = -*h;
     } else if (aFilsDroit(pAVL)) {
@@ -331,12 +340,54 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
     return pAVL;
 }
 
+void infixeToFile(AVL *p, FILE *f) {
+    if (p != NULL) {
+        infixeToFile(p->pDroit, f);
+        fprintf(f, "[%c] [%d]\n", p->ville.nomVille, p->ville.traversee);
+        infixeToFile(p->pGauche, f);
+    }
+}
+
+
+void infixeFichier(AVL *p, FILE *f) {
+    if (!estVide(p)) {
+        infixeFichier(p->pDroit, );
+        fprintf(f, "[%s] [%d]\n", p->ville.nomVille, p->ville.traversee);
+        infixeFichier(p->pGauche, f);
+    }
+}
+
+int villeDeDepart(FILE *f, FILE *f) {
+    //a mettre dans un autre programme
+
+}
 
 
 int main(int argc, char** argv) {
-    FILE *fichier=fopen("tempT.txt", "r");
-    FILE *res=fopen("resultT.txt", "w");
+    FILE *tempT3=fopen("tempT3.txt", "r"); //il faut un fichier ici pour la partie 1 du T
+    FILE *tempT4=fopen("tempT4.txt", "r"); //il faut un fichier ici pour la partie 2 du T
+    FILE *resultatsTc=fopen("resultatsTc.txt", "w");
     
+    if (fichier1 == NULL || fichier2 == NULL || res == NULL) {
+        perror("Error opening file");
+        return -1;
+    }
+
+    AVL* pRoot = NULL; // Initialisation de votre AVL à NULL
+
+    // Lecture du fichier et ajout des données dans l'AVL
+    VILLE ville;
+    int h = 0; // Initialisation de la hauteur pour l'insertion
+    while (fscanf(fichier, "%s %d", &ville.nomVille, &ville.traversee) == 2) { //changer fichier par le nom d'un des fichiers
+        pRoot = insertionAVL(pRoot, ville, &h); // Utilisez votre fonction d'insertion ici
+    }
+
+    infixeFichier(pRoot, resultatsTc);
+
+    fclose(fichier1);
+    fclose(fichier2);
+    fclose(res);
     
     return 0;
 }
+
