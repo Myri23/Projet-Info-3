@@ -14,12 +14,6 @@ typedef struct AVL {
     int equilibre;
 } AVL;
 
-//pb1: on doit pouvoir comparer des entites donc trouver comment appeler le int dans la structure ville (ok)
-//pb2: trouver comment creer un avl a partir des donnees du fichier (ok)
-//pb3: coder un parcours infixe inversé (pour avoir l'ordre decroissant) (ok)
-//attention le parcours infixe doit afficher le nom de la ville et le nb de fois qu'elle est traversee (ok)
-//pb4: ville de depart ou d'arrivee utiliser un fichier a 3 colonnes 
-//pb5: 
 
 
 AVL* creerAVL(VILLE v) {
@@ -355,11 +349,6 @@ void infixeFichier(AVL *p, FILE *f) {
         fprintf(f, "[%s] [%d]\n", p->ville.nomVille, p->ville.traversee);
         infixeFichier(p->pGauche, f);
     }
-}
-
-int villeDeDepart(FILE *f, FILE *f) {
-    //a mettre dans un autre programme
-
 }
 
 
