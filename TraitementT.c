@@ -148,7 +148,7 @@ AVL* RotationGauche(AVL* pAVL) {
     eq_a = pAVL->equilibre;
     eq_p = pivot->equilibre;
     pAVL->equilibre = eq_a - fmax(eq_p, 0) - 1;
-    pivot->equilibre = fmin(eq_a - 2, fmax(eq_a + eq_p - 2, eq_p - 1));
+    pivot->equilibre = fmin(eq_a - 2, eq_a + eq_p - 2, eq_p - 1);
     pAVL = pivot;
     return pAVL;
 }
@@ -163,8 +163,8 @@ AVL* RotationDroite(AVL* pAVL) {
  
     eq_a = pAVL->equilibre;
     eq_p = pivot->equilibre;
-    pAVL->equilibre = eq_a - fmax(eq_p, 0) - 1;
-    pivot->equilibre = fmin(eq_a - 2, fmax(eq_a + eq_p - 2, eq_p - 1));
+    pAVL->equilibre = eq_a - fmin(eq_p, 0) + 1;
+    pivot->equilibre = fmax(eq_a + 2, eq_a + eq_p + 2, eq_p + 1);
     pAVL = pivot;
     return pAVL;
 }
@@ -347,11 +347,11 @@ void infixeFichier(AVL *p, FILE *f) {
 
 
 int main(int argc, char** argv) {
-    FILE *tempT3=fopen("tempT3.txt", "r"); //il faut un fichier ici pour la partie 1 du T
-    //FILE *tempT4=fopen("tempT4.txt", "r"); //il faut un fichier ici pour la partie 2 du T
+    //FILE *tempT3=fopen("tempT3.txt", "r"); 
+    FILE *tempT4=fopen("tempT4.txt", "r"); 
     FILE *resultatsTc=fopen("resultatsTc.txt", "w");
     
-    if (tempT3 == NULL || /*tempT4 == NULL ||*/ resultatsTc == NULL) {
+    if (/*tempT3 == NULL ||*/ tempT4 == NULL || resultatsTc == NULL) {
         perror("Error opening file");
         return -1;
     }
@@ -367,8 +367,8 @@ int main(int argc, char** argv) {
 
     infixeFichier(pRoot, resultatsTc);
 
-    fclose(tempT3);
-    //fclose(tempT4);
+    //fclose(tempT3);
+    fclose(tempT4);
     fclose(resultatsTc);
     
     return 0;
