@@ -3,7 +3,7 @@
 #include <math.h>
  
 typedef struct VILLE{
-    char nomVille; //nom de la ville
+    char nomVille[50]; //nom de la ville
     int traversee; //nombre de fois où la ville est traversée 
 } VILLE;
  
@@ -148,7 +148,7 @@ AVL* RotationGauche(AVL* pAVL) {
     eq_a = pAVL->equilibre;
     eq_p = pivot->equilibre;
     pAVL->equilibre = eq_a - fmax(eq_p, 0) - 1;
-    pivot->equilibre = fmin(eq_a - 2, eq_a + eq_p - 2, eq_p - 1);
+    pivot->equilibre = fmin(eq_a - 2, fmin(eq_a + eq_p - 2, eq_p - 1));
     pAVL = pivot;
     return pAVL;
 }
@@ -164,7 +164,7 @@ AVL* RotationDroite(AVL* pAVL) {
     eq_a = pAVL->equilibre;
     eq_p = pivot->equilibre;
     pAVL->equilibre = eq_a - fmin(eq_p, 0) + 1;
-    pivot->equilibre = fmax(eq_a + 2, eq_a + eq_p + 2, eq_p + 1);
+    pivot->equilibre = fmax(eq_a + 2, fmax(eq_a + eq_p + 2, eq_p + 1));
     pAVL = pivot;
     return pAVL;
 }
@@ -347,11 +347,10 @@ void infixeFichier(AVL *p, FILE *f) {
 
 
 int main(int argc, char** argv) {
-    //FILE *tempT3=fopen("tempT3.txt", "r"); 
-    FILE *tempT4=fopen("tempT4.txt", "r"); 
+    FILE *testT=fopen("testT.txt", "r"); 
     FILE *resultatsTc=fopen("resultatsTc.txt", "w");
     
-    if (/*tempT3 == NULL ||*/ tempT4 == NULL || resultatsTc == NULL) {
+    if (testT == NULL || resultatsTc == NULL) {
         perror("Error opening file");
         return -1;
     }
@@ -361,14 +360,13 @@ int main(int argc, char** argv) {
     // Lecture du fichier et ajout des données dans l'AVL
     VILLE ville;
     int h = 0; // Initialisation de la hauteur pour l'insertion
-    while (fscanf(tempT3, "%s %d", &ville.nomVille, &ville.traversee) == 2) { //changer fichier par le nom d'un des fichiers
+    while (fscanf(testT, "%s %d", &ville.nomVille, &ville.traversee) == 2) { //changer fichier par le nom d'un des fichiers
         pRoot = insertionAVL(pRoot, ville, &h); // Utilisez votre fonction d'insertion ici
     }
 
     infixeFichier(pRoot, resultatsTc);
 
-    //fclose(tempT3);
-    fclose(tempT4);
+    fclose(testT);
     fclose(resultatsTc);
     
     return 0;
