@@ -179,7 +179,7 @@ AVL* DoubleRotationDroite(AVL* pAVL) {
     return RotationDroite(pAVL);
 }
 
-AVL* suppMax(AVL* p, VILLE* pv) { //verifier si c un simple pointeur ici ou un double pointeur
+AVL* suppMax(AVL* p, VILLE* pv) { 
     if (p->pDroit != NULL) {
         p->pDroit = suppMax(p->pDroit, pv);
     } else {
@@ -191,7 +191,7 @@ AVL* suppMax(AVL* p, VILLE* pv) { //verifier si c un simple pointeur ici ou un d
     return p;
 }
  
-AVL* suppMin(AVL* p, VILLE* pv) { //verifier si c un simple pointeur ici ou un double pointeur
+AVL* suppMin(AVL* p, VILLE* pv) { 
     if (p->pGauche != NULL) {
         p->pGauche = suppMin(p->pGauche, pv);
     } else {
@@ -316,21 +316,17 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
         free(tmp);
         *h = -1;
     }
- 
     if (pAVL == NULL) {
         *h = 0;
-    }
- 
+    } 
     if (*h != 0) {
         pAVL->equilibre = pAVL->equilibre + *h;
     }
- 
     if (pAVL->equilibre == 0) {
         *h = 0;
     } else {
         *h = 1;
     }
- 
     return pAVL;
 }
 
