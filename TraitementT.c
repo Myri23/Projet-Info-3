@@ -333,11 +333,11 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
 
 
 
-void infixeFichier(AVL *p, FILE *f) {
+void infixeInverseFichier(AVL *p, FILE *f) {
     if (!estVide(p)) {
-        infixeFichier(p->pDroit, f);
+        infixeInverseFichier(p->pDroit, f);
         fprintf(f, "[%s] [%d]\n", p->ville.nomVille, p->ville.traversee);
-        infixeFichier(p->pGauche, f);
+        infixeInverseFichier(p->pGauche, f);
     }
 }
 
@@ -360,7 +360,7 @@ int main(int argc, char** argv) {
         pRoot = insertionAVL(pRoot, ville, &h); // Utilisez votre fonction d'insertion ici
     }
 
-    infixeFichier(pRoot, resultatsTc);
+    infixeInverseFichier(pRoot, resultatsTc);
 
     fclose(testT);
     fclose(resultatsTc);
