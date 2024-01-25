@@ -139,35 +139,47 @@ Avl *insertionAVL(Avl *a,int id, float min, fload max, float moy, float diff, in
   return a;
 }
 
+// Fonction pour lire les données depuis le fichier
+void lireDonneesDepuisFichier(Avl **a, const char *nomFichier) {
+    FILE *fichier = fopen(nomFichier, "r");
+    if (fichier == NULL) {
+        fprintf(stderr, "Erreur : Impossible d'ouvrir le fichier %s\n", nomFichier);
+        exit(EXIT_FAILURE);
+    }
 
+    char ligne[512];  // Ajustez la taille en fonction de vos besoins
+
+    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+        // Extraire les données de la ligne et les ajouter à l'arbre AVL
+        // Utilisez votre fonction insertionAVL ici
+    }
+
+    fclose(fichier);
+}
+
+// Fonction pour trier les données selon la différence distance_maxi - distance_mini
+void trierDonnees(Avl **a) {
+    // Implémentez le tri AVL ici
+}
+
+// Fonction pour générer le graphique min-max-moyenne
+void genererGraphique(Avl *a) {
+    // Implémentez la génération du graphique ici
+}
 
 int main(void) {
-  Avl *a = creerAvl(10);
-  /*
-  a=ajouterFD(a,1);
-  a=ajouterFD(a,2);
-  a->fd=ajouterFD(a->fd,3);
-  a->fd->fd->equilibre=0;
-  a->fd->equilibre=1;
-  a->equilibre=2;
-  parcoursPrefixe(a);
-a=rotationG(a);
-  parcoursPrefixe(a);
-a=rotationD(a);
-  parcoursPrefixe(a);
-  */
-  int *h = malloc(sizeof(int));
-  int *pe = malloc(sizeof(int));
-  a=insertionAVL(a, 5, h);
-  a=insertionAVL(a, 20, h);
-  a=insertionAVL(a, 15, h);
-  //a=insertionAVL(a, 26, h);
-  a=insertionAVL(a, 13, h);
-  a=insertionAVL(a, 17, h);
-  //a=suppMinAVL(a,h, pe);
-  a=suppAvl(a,10, h);
-  parcoursPrefixe(a);
-free(h);
-free(pe);
-  return 0;
+    Avl *a = NULL;
+
+    // Lire les données depuis le fichier
+    lireDonneesDepuisFichier(&a, "votre_fichier.txt");
+
+    // Trier les données
+    trierDonnees(&a);
+
+    // Générer et afficher le graphique
+    genererGraphique(a);
+
+    // Libérer la mémoire de l'arbre AVL si nécessaire
+
+    return 0;
 }
