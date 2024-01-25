@@ -138,20 +138,26 @@ Avl *insertionAVL(Avl *a,int id, float min, fload max, float moy, float diff, in
   }
   return a;
 }
-
-// Fonction pour lire les données depuis le fichier
-void lireDonneesDepuisFichier(Avl **a, const char *nomFichier) {
+            rpl //le fichier s apl data.csv
+void lireDonneesDepuisFichier(Avl **a, const char *data.csv) {
     FILE *fichier = fopen(nomFichier, "r");
     if (fichier == NULL) {
-        fprintf(stderr, "Erreur : Impossible d'ouvrir le fichier %s\n", nomFichier);
+        fprintf(stderr, "Erreur : Impossible d'ouvrir le fichier %s\n", data.csv);
         exit(EXIT_FAILURE);
     }
 
-    char ligne[512];  // Ajustez la taille en fonction de vos besoins
+    char ligne[4096];  
 
     while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
-        // Extraire les données de la ligne et les ajouter à l'arbre AVL
-        // Utilisez votre fonction insertionAVL ici
+        int id;
+        float min, max, moy, diff;
+
+        if (sscanf(ligne, "%d,%f,%f,%f,%f", &id, &min, &max, &moy, &diff) == 5) { //verifier sur le fichier que chaque donner et bien separer par une ,
+            int h = 0;
+            *a = insertionAVL(*a, id, min, max, moy, diff, &h);
+        } else {
+            fprintf(stderr, "Erreur : Format de ligne invalide dans le fichier\n");
+        }
     }
 
     fclose(fichier);
@@ -169,14 +175,12 @@ void genererGraphique(Avl *a) {
 
 int main(void) {
     Avl *a = NULL;
+  
+    lireDonneesDepuisFichier(&a, "data.cvs");
 
-    // Lire les données depuis le fichier
-    lireDonneesDepuisFichier(&a, "votre_fichier.txt");
 
-    // Trier les données
     trierDonnees(&a);
 
-    // Générer et afficher le graphique
     genererGraphique(a);
 
     // Libérer la mémoire de l'arbre AVL si nécessaire
