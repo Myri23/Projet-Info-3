@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
  
 typedef struct VILLE{
@@ -117,25 +118,6 @@ void ajoutFilsGauche(AVL* p, VILLE v) {
     }
 }
 
-void ajoutABR(AVL* p, VILLE v) {
-    if (!estVide(p)) {
-        if (!recherche(p, v)) {
-            while ((v.traversee < p->ville.traversee && aFilsGauche(p)) || (v.traversee > p->ville.traversee && aFilsDroit(p))) {
-                if (v.traversee < p->ville.traversee) {
-                    p = p->pGauche;
-                } else {
-                    p = p->pDroit;
-                }
-            }
- 
-            if (v.traversee < p->ville.traversee) {
-                ajoutFilsGauche(p, v);
-            } else if (v.traversee > p->ville.traversee) {
-                ajoutFilsDroit(p, v);
-            }
-        }
-    }
-}
 
 AVL* RotationGauche(AVL* pAVL) {
     AVL* pivot;
@@ -179,79 +161,6 @@ AVL* DoubleRotationDroite(AVL* pAVL) {
     return RotationDroite(pAVL);
 }
 
-AVL* suppMax(AVL* p, VILLE* pv) { 
-    if (p->pDroit != NULL) {
-        p->pDroit = suppMax(p->pDroit, pv);
-    } else {
-        *pv = p->ville;
-        AVL* tmp = p;
-        p = p->pGauche;
-        free(tmp);
-    }
-    return p;
-}
- 
-AVL* suppMin(AVL* p, VILLE* pv) { 
-    if (p->pGauche != NULL) {
-        p->pGauche = suppMin(p->pGauche, pv);
-    } else {
-        *pv = p->ville;
-        AVL* tmp = p;
-        p = p->pDroit;
-        free(tmp);
-    }
-    return p;
-}
-
-AVL* RetirerABRGauche(AVL* p, VILLE v) {
-    if (p == NULL) {
-        return p;
-    }
-    if (v.traversee > p->ville.traversee) {
-        p->pDroit = RetirerABRGauche(p->pDroit, v);
-    } else if (v.traversee < p->ville.traversee) {
-        p->pGauche = RetirerABRGauche(p->pGauche, v);
-    } else {
-        if (p->pGauche == NULL) {
-            AVL* tmp = p->pDroit;
-            free(p);
-            return tmp;
-        } else if (p->pDroit == NULL) {
-            AVL* tmp = p->pGauche;
-            free(p);
-            return tmp;
-        }
-        VILLE tmpville;
-        p->pGauche = suppMax(p->pGauche, &tmpville);
-        p->ville = tmpville;
-    }
-    return p;
-}
- 
-AVL* RetirerABRDroit(AVL* p, VILLE v) {
-    if (p == NULL) {
-        return p;
-    }
-    if (v.traversee > p->ville.traversee) {
-        p->pDroit = RetirerABRDroit(p->pDroit, v);
-    } else if (v.traversee < p->ville.traversee) {
-        p->pGauche = RetirerABRDroit(p->pGauche, v);
-    } else {
-        if (p->pGauche == NULL) {
-            AVL* tmp = p->pDroit;
-            free(p);
-            return tmp;
-        } else if (p->pDroit == NULL) {
-            AVL* tmp = p->pGauche;
-            free(p);
-            return tmp;
-        }
-        VILLE tmpville;
-        p->pGauche = suppMax(p->pGauche, &tmpville);
-        p->ville = tmpville;
-    }
-    return p;
-}
 
 AVL* equilibrerAVL(AVL* pAVL) {
     if (pAVL->equilibre >= 2) {
@@ -316,37 +225,41 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
         free(tmp);
         *h = -1;
     }
+ 
     if (pAVL == NULL) {
         *h = 0;
-    } 
+    }
+ 
     if (*h != 0) {
         pAVL->equilibre = pAVL->equilibre + *h;
     }
+ 
     if (pAVL->equilibre == 0) {
         *h = 0;
     } else {
         *h = 1;
     }
+ 
     return pAVL;
 }
 
 
 
 
-void infixeInverseFichier(AVL *p, FILE *f) {
+void infixeFichier(AVL *p, FILE *f) {
     if (!estVide(p)) {
-        infixeInverseFichier(p->pDroit, f);
-        fprintf(f, "[%s] [%d]\n", p->ville.nomVille, p->ville.traversee);
-        infixeInverseFichier(p->pGauche, f);
+        infixeFichier(p->pDroit, f);
+        fprintf(f, "[%d] [%s]\n", p->ville.traversee, p->ville.nomVille);
+        infixeFichier(p->pGauche, f);
     }
 }
 
 
 int main(int argc, char** argv) {
-    FILE *testT=fopen("testT.txt", "r"); 
+    FILE *result_T=fopen("result_T.txt", "r"); 
     FILE *resultatsTc=fopen("resultatsTc.txt", "w");
     
-    if (testT == NULL || resultatsTc == NULL) {
+    if (result_T == NULL || resultatsTc == NULL) {
         perror("Error opening file");
         return -1;
     }
@@ -356,13 +269,33 @@ int main(int argc, char** argv) {
     // Lecture du fichier et ajout des données dans l'AVL
     VILLE ville;
     int h = 0; // Initialisation de la hauteur pour l'insertion
-    while (fscanf(testT, "%s %d", &ville.nomVille, &ville.traversee) == 2) { //changer fichier par le nom d'un des fichiers
-        pRoot = insertionAVL(pRoot, ville, &h); // Utilisez votre fonction d'insertion ici
+    char line[100]; // Taille suffisante pour stocker chaque ligne
+    while (fgets(line, sizeof(line), result_T) != NULL) {
+        char* ligne = strtok(line, " "); // Séparer la ligne par des espaces
+        if (ligne == NULL) {
+            continue; // Ligne vide ou non valide, passer à la suivante
+        }
+
+        // Conversion de l'entier
+        int traversee = atoi(ligne);
+
+        // Lire le nom de la ville restant sur la ligne
+        ligne = strtok(NULL, "\n");
+        if (ligne == NULL) {
+            continue; // Ligne non valide, passer à la suivante
+        }
+
+        // Utiliser ligne comme nom de ville
+        strcpy(ville.nomVille, ligne);
+        ville.traversee = traversee;
+
+        // Insérer dans l'AVL
+        pRoot = insertionAVL(pRoot, ville, &h);
     }
 
-    infixeInverseFichier(pRoot, resultatsTc);
+    infixeFichier(pRoot, resultatsTc);
 
-    fclose(testT);
+    fclose(result_T);
     fclose(resultatsTc);
     
     return 0;
