@@ -13,7 +13,7 @@ typedef struct avl {
   int equilibre;
 } Avl;
 
-Avl *creerAvl(int id, float min, fload max, float moy, float diff) {  
+Avl *creerAvl(int id, float min, float max, float moy, float diff) {  
   Avl *new = malloc(sizeof(Avl));
   if (new == NULL) {
     printf("erreur d'allocation dynamique");
