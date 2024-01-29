@@ -139,7 +139,7 @@ Avl *insertionAVL(Avl *a,int id, float min, float max, float moy, float diff, in
   return a;
 }
            
-void lireDonneesDepuisFichier(Avl **a, const char *data.csv) {
+void lireDonneesDepuisFichier(Avl **a, const char *data.cvs) {
     FILE *fichier = fopen(nomFichier, "r");
     if (fichier == NULL) {
         fprintf(stderr, "Erreur : Impossible d'ouvrir le fichier %s\n", data.csv);
