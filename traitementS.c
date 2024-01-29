@@ -23,11 +23,11 @@ Avl *creerAvl(int id, float min, float max, float moy, float diff) {
   new->distance_min = min;
   new->distance_max = max;
   new->distance_moy = moy;
-  new->diff = e;
+  new->diff = diff;
   new->fd = NULL;
   new->fg = NULL;
   new->equilibre = 0;
-  return pnew;
+  return new;
 }                                                                     
 
 int max(int a, int b) {
@@ -110,10 +110,10 @@ Avl *equilibreAVL(Avl *a) {
   return a;
 }
 
-Avl *insertionAVL(Avl *a,int id, float min, fload max, float moy, float diff, int *h) {
+Avl *insertionAVL(Avl *a,int id, float min, float max, float moy, float diff, int *h) {
   if (a == NULL) {
     *h = 1;
-    return creerAvl(id, min, max,  moy, t diff);
+    return creerAvl(id, min, max,  moy, diff);
   } 
   else if (diff < a->diff) {
     a->fg = insertionAVL(a->fg, id,  min, max,  moy, diff, h);
@@ -138,7 +138,7 @@ Avl *insertionAVL(Avl *a,int id, float min, fload max, float moy, float diff, in
   }
   return a;
 }
-            rpl //le fichier s apl data.csv
+           
 void lireDonneesDepuisFichier(Avl **a, const char *data.csv) {
     FILE *fichier = fopen(nomFichier, "r");
     if (fichier == NULL) {
