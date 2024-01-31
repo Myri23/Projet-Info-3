@@ -6,7 +6,31 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-cut -d";" -f1,5 data.csv > tempS.csv
-#cherche un moyen de recuperer en shell ou en c que les distances max et min pour un route ID unique 
+cut -d";" -f1,5 data.csv > tempS.txt
+
+# Trie et extrait les distances maximales et minimales pour chaque routeID
+
+awk -F ';' '{
+    if (!($1 in minDistances) || $2 < minDistances[$1]) {
+        minDistances[$1] = $2;
+    }
+    if (!($1 in maxDistances) || $2 > maxDistances[$1]) {
+        maxDistances[$1] = $2;
+    }
+    distancesSomme[$1] += $2;  
+    compteur[$1]++;  
+}
+END {
+    for (routeID in maxDistances) {
+        difference = maxDistances[routeID] - minDistances[routeID];
+        moyenne = distancesSomme[routeID] / compteur[routeID];
+        print routeID ";" minDistances[routeID] ";" moyenne ";" maxDistances[routeID] ";" difference;
+    }
+}' tempS.txt > tempS2.txt
+
+#tri des donnees par le programme c
+
+head -50 result_S1.txt > result_S.txt
+
 #diff = distance max - distance min en shell ou en c
 #avl qui trie dans l'ordre decroissant le diff par rapport au route ID

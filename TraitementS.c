@@ -1,270 +1,379 @@
-//verifier a chaque fois que a est diff de null
 #include <stdio.h>
 #include <stdlib.h>
-
-/*
-typedef struct VILLE{
-    //char RouteID[50]
-    //int max;
-    //int min;
-    //int diff = max - min;
-} VILLE;
-*/
-
-typedef struct avl {
-  int id;
-  float distance_min;
-  float distance_max;
-  float distance_moy;
-  float diff;
-  struct avl *fd;
-  struct avl *fg;  
-  int equilibre;
-} Avl;
-
-Avl *creerAvl(int id, float min, float max, float moy, float diff) {  
-  Avl *new = malloc(sizeof(Avl));
-  if (new == NULL) {
-    printf("erreur d'allocation dynamique");
-    exit(1);
-  }
-  new->id = id;
-  new->distance_min = min;
-  new->distance_max = max;
-  new->distance_moy = moy;
-  new->diff = diff;
-  new->fd = NULL;
-  new->fg = NULL;
-  new->equilibre = 0;
-  return new;
-}                                                                     
-
-int max(int a, int b) {
-  if (a >= b) {
-    return a;
-  }
-  return b;
-}
-
-int min(int a, int b) {
-  if (a >= b) {
-    return b;
-  }
-  return a;
-}
-
-int min2(int a, int b, int c) {
-  return min(min(a, b), c);
-}
-
-int max2(int a, int b, int c) {
-  return max(max(a, b), c);
-}
-
-Avl *rotationG(Avl *a) {
-  int eq_pivot;
-  int eq_a;
-  Avl *pivot;
-  pivot = a->fd;
-  a->fd = pivot->fg;
-  pivot->fg = a;
-  eq_a = a->equilibre;
-  eq_pivot = pivot->equilibre;
-  a->equilibre = eq_a - max(eq_pivot, 0) - 1;
-  pivot->equilibre = min2(eq_a - 2, eq_a + eq_pivot - 2, eq_pivot - 1);
-  a = pivot;
-  return a;
-}
-
-Avl *rotationD(Avl *a) {
-  int eq_pivot;
-  int eq_a;
-  Avl *pivot;
-  pivot = a->fg;
-  a->fg = pivot->fd;
-  pivot->fd = a;
-  eq_a = a->equilibre;
-  eq_pivot = pivot->equilibre;
-  a->equilibre = eq_a - min(eq_pivot, 0) + 1;
-  pivot->equilibre = max2(eq_a + 2, eq_a + eq_pivot + 2, eq_pivot + 1);
-  a = pivot;
-  return a;
-}
+#include <string.h>
+#include <math.h>
 
 
-Avl *DoubleRG(Avl *a) {
-  a->fd = rotationD(a->fd);
-  return rotationG(a);
-}
+typedef struct TRAJET{ //TRAJET
+    char RouteID[50];
+    char max[50];
+    char min[50];
+    char moyenne[50];
+    float difference;
+} TRAJET;
 
-Avl *DoubleRD(Avl *a) {
-  a->fg = rotationG(a->fg);
-  return rotationD(a);
-}
 
-Avl *equilibreAVL(Avl *a) {
-  if (a->equilibre >= 2) {
-    if (a->fd->equilibre >= 0) {
-      return rotationG(a);
-    } else {
-      return DoubleRG(a);
+ 
+typedef struct AVL {
+    TRAJET trajet;
+    struct AVL* pGauche;
+    struct AVL* pDroit;
+    int equilibre;
+} AVL;
+
+
+
+AVL* creerAVL(TRAJET t) {
+    AVL* pNouveau = malloc(sizeof(AVL));
+    if (pNouveau == NULL) {
+        exit(10);
     }
-  } else if (a->equilibre <= -2) {
-    if (a->fg->equilibre <= 0) {
-      return rotationD(a);
-    } else {
-      return DoubleRD(a);
-    }
-  }
-  return a;
+    pNouveau->trajet = t;
+    pNouveau->pGauche = NULL;
+    pNouveau->pDroit = NULL;
+    pNouveau->equilibre = 0;
+    return pNouveau;
 }
 
-Avl *insertionAVL(Avl *a,int id, float min, float max, float moy, float diff, int *h) {
-  if (a == NULL) {
-    *h = 1;
-    return creerAvl(id, min, max,  moy, diff);
-  } 
-  else if (diff < a->diff) {
-    a->fg = insertionAVL(a->fg, id,  min, max,  moy, diff, h);
-    *h = -*h;
-  } 
-  else if (diff > a->diff) {
-    a->fd = insertionAVL(a->fd, id, min, max,  moy, diff, h);
-  } 
-  else {
-    *h = 0;
-    return a;
-  }
-  if (*h != 0) {
-    a->equilibre = a->equilibre + *h;
-    a = equilibreAVL(a);
-    if (a->equilibre == 0) {
-      *h = 0;
-    } 
-    else {
-      *h = 1;
-    }
-  }
-  return a;
+int estVide(AVL* p) {
+    return p == NULL;
 }
-           
-void lireDonneesDepuisFichier(Avl **a, const char *data) {
-    FILE *fichier = fopen(data, "r");
-    if (fichier == NULL) {
-        fprintf(stderr, "Erreur : Impossible d'ouvrir le fichier %s\n", data);
-        exit(EXIT_FAILURE);
+ 
+int estFeuille(AVL* p) {
+    return (!estVide(p) && p->pGauche == NULL && p->pDroit == NULL);
+}
+ 
+TRAJET avoirTrajet(AVL* p) {
+    if (estVide(p)) {
+        exit(20);
     }
-
-    char ligne[4096];  
-
-    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
-        int id;
-        float min, max, moy, diff;
-
-        if (sscanf(ligne, "%d,%f,%f,%f,%f", &id, &min, &max, &moy, &diff) == 5) { //verifier sur le fichier que chaque donner et bien separer par une ,
-            int h = 0;
-            *a = insertionAVL(*a, id, min, max, moy, diff, &h);
-        } else {
-            fprintf(stderr, "Erreur : Format de ligne invalide dans le fichier\n");
-        }
-    }
-
-    fclose(fichier);
+    return p->trajet;
+}
+ 
+int aFilsGauche(AVL* p) {
+    return (!estVide(p) && (p->pGauche != NULL));
+}
+ 
+int aFilsDroit(AVL* p) {
+    return (!estVide(p) && (p->pDroit != NULL));
 }
 
-void trierAVL(Avl *a, DonneeTriee *donnees, int *index) {
-    if (a == NULL) {
-        return;
-    }
-
-    trierAVL(a->fg, donnees, index);
-
-    // Stocker les données du nœud dans le tableau
-    donnees[*index].id = a->id;
-    donnees[*index].min = a->distance_min;
-    donnees[*index].max = a->distance_max;
-    donnees[*index].moy = a->distance_moy;
-    donnees[*index].diff = a->diff;
-    (*index)++;
-
-    trierAVL(a->fd, donnees, index);
-}
-
-// Comparateur pour le tri en fonction de la différence distance_maxi - distance_mini
-int comparerDonnees(const void *a, const void *b) {
-    float diffA = ((DonneeTriee *)a)->max - ((DonneeTriee *)a)->min;
-    float diffB = ((DonneeTriee *)b)->max - ((DonneeTriee *)b)->min;
-
-    if (diffA > diffB) {
-        return -1;
-    } else if (diffA < diffB) {
+int recherche(AVL* p, TRAJET t) {
+    if (p == NULL) {
+        return 0;
+    } else if (p->trajet.RouteID == t.RouteID && p->trajet.difference == t.difference) {
         return 1;
     } else {
-        return 0;
+        return recherche(p->pGauche, t) || recherche(p->pDroit, t);
+    }
+}
+ 
+AVL* insertionAVL(AVL* pAVL, TRAJET t, int* h) {
+    if (pAVL == NULL) {
+        *h = 1;
+        return creerAVL(t);
+    } else if (t.difference < pAVL->trajet.difference) {
+        pAVL->pGauche = insertionAVL(pAVL->pGauche, t, h);
+        if (*h != 0) {
+            pAVL->equilibre = pAVL->equilibre - *h;
+            if (pAVL->equilibre == 0) {
+                *h = 0;
+            } else {
+                *h = 1;
+            }
+        }
+    } else if (t.difference > pAVL->trajet.difference) {
+        pAVL->pDroit = insertionAVL(pAVL->pDroit, t, h);
+        if (*h != 0) {
+            pAVL->equilibre = pAVL->equilibre + *h;
+            if (pAVL->equilibre == 0) {
+                *h = 0;
+            } else {
+                *h = 1;
+            }
+        }
+    } else {
+        *h = 0;
+    }
+    return pAVL;
+}
+ 
+void ajoutFilsDroit(AVL* p, TRAJET t) {
+    if (estVide(p)) {
+        exit(33);
+    }
+    if (aFilsDroit(p)) {
+        exit(34);
+    }
+    p->pDroit = creerAVL(t);
+    if (p->pDroit == NULL) {
+        exit(35);
+    }
+}
+ 
+void ajoutFilsGauche(AVL* p, TRAJET t) {
+    if (estVide(p)) {
+        exit(30);
+    }
+    if (aFilsGauche(p)) {
+        exit(31);
+    }
+    p->pGauche = creerAVL(t);
+    if (p->pGauche == NULL) {
+        exit(32);
     }
 }
 
-// Fonction pour reconstruire l'arbre AVL à partir des données triées
-Avl *reconstruireAVL(DonneeTriee *donnees, int debut, int fin) {
-    if (debut > fin) {
-        return NULL;
+
+AVL* RotationGauche(AVL* pAVL) {
+    AVL* pivot;
+    int eq_a;
+    int eq_p;
+    pivot = pAVL->pDroit;
+    pAVL->pDroit = pivot->pGauche;
+    pivot->pGauche = pAVL;
+ 
+    eq_a = pAVL->equilibre;
+    eq_p = pivot->equilibre;
+    pAVL->equilibre = eq_a - fmax(eq_p, 0) - 1;
+    pivot->equilibre = fmin(eq_a - 2, fmin(eq_a + eq_p - 2, eq_p - 1));
+    pAVL = pivot;
+    return pAVL;
+}
+ 
+AVL* RotationDroite(AVL* pAVL) {
+    AVL* pivot;
+    int eq_a;
+    int eq_p;
+    pivot = pAVL->pGauche;
+    pAVL->pGauche = pivot->pDroit;
+    pivot->pDroit = pAVL;
+ 
+    eq_a = pAVL->equilibre;
+    eq_p = pivot->equilibre;
+    pAVL->equilibre = eq_a - fmin(eq_p, 0) + 1;
+    pivot->equilibre = fmax(eq_a + 2, fmax(eq_a + eq_p + 2, eq_p + 1));
+    pAVL = pivot;
+    return pAVL;
+}
+ 
+AVL* DoubleRotationGauche(AVL* pAVL) {
+    pAVL->pDroit = RotationDroite(pAVL->pDroit);
+    return RotationGauche(pAVL);
+}
+ 
+AVL* DoubleRotationDroite(AVL* pAVL) {
+    pAVL->pGauche = RotationGauche(pAVL->pGauche);
+    return RotationDroite(pAVL);
+}
+
+
+AVL* equilibrerAVL(AVL* pAVL) {
+    if (pAVL->equilibre >= 2) {
+        if (pAVL->pDroit->equilibre >= 0) {
+            return RotationGauche(pAVL);
+        } else {
+            return DoubleRotationGauche(pAVL);
+        }
+    } else if (pAVL->equilibre <= -2) {
+        if (pAVL->pGauche->equilibre <= 0) {
+            return RotationDroite(pAVL);
+        } else {
+            return DoubleRotationDroite(pAVL);
+        }
+    }
+    return pAVL;
+}
+
+AVL* suppMinAVL(AVL* pAVL, int* h, TRAJET* pt) {
+    AVL* tmp;
+ 
+    if (pAVL->pGauche == NULL) {
+        *pt = pAVL->trajet;
+        *h = -1;
+        tmp = pAVL; 
+        pAVL = pAVL->pDroit; 
+        free(tmp);
+        return pAVL; 
+    } else {
+        pAVL->pGauche = suppMinAVL(pAVL->pGauche, h, pt);
+        *h = -*h;
+    }
+ 
+    if (*h != 0) {
+        pAVL->equilibre = pAVL->equilibre + *h;
+        if (pAVL->equilibre == 0) {
+            *h = -1;
+        } else {
+            *h = 0;
+        }
+    }
+ 
+    return pAVL;
+}
+ 
+AVL* suppressionAVL(AVL* pAVL, TRAJET t, int* h) {
+    AVL* tmp;
+ 
+    if (pAVL == NULL) {
+        *h = 1;
+        return pAVL;
+    } else if (t.difference > pAVL->trajet.difference) {
+        pAVL->pDroit = suppressionAVL(pAVL->pDroit, t, h);
+    } else if (t.difference < pAVL->trajet.difference) {
+        pAVL->pGauche = suppressionAVL(pAVL->pGauche, t, h);
+        *h = -*h;
+    } else if (aFilsDroit(pAVL)) {
+        pAVL->pDroit = suppMinAVL(pAVL->pDroit, h, &(pAVL->trajet));
+    } else {
+        tmp = pAVL;
+        pAVL = pAVL->pGauche;
+        free(tmp);
+        *h = -1;
+    }
+ 
+    if (pAVL == NULL) {
+        *h = 0;
+    }
+ 
+    if (*h != 0) {
+        pAVL->equilibre = pAVL->equilibre + *h;
+    }
+ 
+    if (pAVL->equilibre == 0) {
+        *h = 0;
+    } else {
+        *h = 1;
+    }
+ 
+    return pAVL;
+}
+
+
+
+
+void infixeFichier(AVL *p, FILE *f) {
+    if (!estVide(p)) {
+        infixeFichier(p->pDroit, f);
+        fprintf(f, "%s;%s;%s;%s;%f\n", p->trajet.RouteID, p->trajet.min, p->trajet.moyenne, p->trajet.max, p->trajet.difference);
+        infixeFichier(p->pGauche, f);
+    }
+}
+
+int main(int argc, char** argv) {
+    FILE *tempS2=fopen("tempS2.txt", "r"); 
+    FILE *result_S1=fopen("result_S1.txt", "w");
+    
+    if (tempS2 == NULL || result_S1 == NULL) {
+        perror("Error opening file");
+        return -1;
     }
 
-    int milieu = (debut + fin) / 2;
-    Avl *nouveau = creerAvl(donnees[milieu].id, donnees[milieu].min, donnees[milieu].max, donnees[milieu].moy, donnees[milieu].diff);
+    AVL* pRoot = NULL; // Initialisation de votre AVL à NULL
 
-    nouveau->fg = reconstruireAVL(donnees, debut, milieu - 1);
-    nouveau->fd = reconstruireAVL(donnees, milieu + 1, fin);
+    // Lecture du fichier et ajout des données dans l'AVL
+    TRAJET trajet;
+    int h = 0; // Initialisation de la hauteur pour l'insertion
+    char line[100]; // Taille suffisante pour stocker chaque ligne
+    while (fgets(line, sizeof(line), tempS2) != NULL) {
+        char* token = strtok(line, ";"); // Séparer la ligne par des points-virgules
+        if (token == NULL) {
+            continue; // Ligne vide ou non valide, passer à la suivante
+        }
 
-    return nouveau;
-}
+        // Copie du RouteID
+        strcpy(trajet.RouteID, token);
 
-// Fonction principale pour trier les données dans l'arbre AVL
-void trierDonnees(Avl **a) {
-    // Compter le nombre de nœuds dans l'arbre
-    int taille = compterNoeuds(*a);
+        // Copie du min
+        token = strtok(NULL, ";");
+        if (token == NULL) {
+            continue; // Ligne non valide, passer à la suivante
+        }
+        strcpy(trajet.min, token);
 
-    // Allouer un tableau pour stocker les données triées
-    DonneeTriee *donneesTriees = malloc(taille * sizeof(DonneeTriee));
+        // Copie de la moyenne
+        token = strtok(NULL, ";");
+        if (token == NULL) {
+            continue; // Ligne non valide, passer à la suivante
+        }
+        strcpy(trajet.moyenne, token);
 
-    // Indice pour suivre la position actuelle dans le tableau
-    int index = 0;
 
-    // Remplir le tableau avec les données de l'arbre AVL
-    trierAVL(*a, donneesTriees, &index);
+        // Copie du max
+        token = strtok(NULL, ";");
+        if (token == NULL) {
+            continue; // Ligne non valide, passer à la suivante
+        }
+        strcpy(trajet.max, token);
 
-    // Trier le tableau en fonction de la différence distance_maxi - distance_mini
-    qsort(donneesTriees, taille, sizeof(DonneeTriee), comparerDonnees);
+        // Conversion de la différence en float
+        token = strtok(NULL, ";");
+        if (token == NULL) {
+            continue; // Ligne non valide, passer à la suivante
+        }
+        trajet.difference = atof(token);
 
-    // Reconstruire l'arbre AVL à partir des données triées
-    *a = reconstruireAVL(donneesTriees, 0, taille - 1);
-
-    // Libérer la mémoire allouée pour le tableau
-    free(donneesTriees);
-}
-
-// Fonction pour générer le graphique min-max-moyenne
-void genererGraphique(Avl *a) {
-    // Implémentez la génération du graphique ici
-}
-
-int main(void) {
-    Avl *a = NULL;
-    FILE *fichier=fopen("data.csv", "r"); 
-     if (fichier == NULL) { 
-      fprintf(stderr, "Impossible d'ouvrir le fichier\n");
-      return 2;
+        // Insérer dans l'AVL
+        pRoot = insertionAVL(pRoot, trajet, &h);
     }
-  
-  
-    lireDonneesDepuisFichier(&a, "data.cvs");
 
+    // Écriture de l'AVL dans le fichier result_S1.txt
+    infixeFichier(pRoot, result_S1);
 
-    trierDonnees(&a);
-
-    genererGraphique(a);
-
-    // Libérer la mémoire de l'arbre AVL si nécessaire
-
+    // Fermeture des fichiers
+    fclose(tempS2);
+    fclose(result_S1);
+    
     return 0;
 }
+
+
+
+
+/*
+int main(int argc, char** argv) {
+    FILE *tempS2=fopen("tempS2.txt", "r"); 
+    FILE *result_S1=fopen("result_S1.txt", "w");
+    
+    if (tempS2 == NULL || result_S1 == NULL) {
+        perror("Error opening file");
+        return -1;
+    }
+
+    AVL* pRoot = NULL; // Initialisation de votre AVL à NULL
+
+    // Lecture du fichier et ajout des données dans l'AVL
+    TRAJET trajet;
+    int h = 0; // Initialisation de la hauteur pour l'insertion
+    char line[100]; // Taille suffisante pour stocker chaque ligne
+    while (fgets(line, sizeof(line), tempS2) != NULL) {
+        char* ligne = strtok(line, " "); // Séparer la ligne par des espaces
+        if (ligne == NULL) {
+            continue; // Ligne vide ou non valide, passer à la suivante
+        }
+
+        // Conversion de l'entier
+        int traversee = atoi(ligne);
+
+        // Lire le nom de la ville restant sur la ligne
+        ligne = strtok(NULL, "\n");
+        if (ligne == NULL) {
+            continue; // Ligne non valide, passer à la suivante
+        }
+
+        // Utiliser ligne comme nom de ville
+        strcpy(ville.nomVille, ligne);
+        ville.traversee = traversee;
+
+        // Insérer dans l'AVL
+        pRoot = insertionAVL(pRoot, ville, &h);
+    }
+
+    infixeFichier(pRoot, result_S1);
+
+    fclose(tempS2);
+    fclose(result_S1);
+    
+    return 0;
+}
+*/
