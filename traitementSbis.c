@@ -141,3 +141,12 @@ Avl *insertionAVL(Avl *a,int id, float min, float max, float moy, float diff, in
   }
   return a;
 }
+
+int main() {
+    FILE *result_s=fopen("tempsS.txt", "r"); 
+    FILE *resultatsSc=fopen("resultat.txt", "w");
+    
+    if (result_s == NULL || resultatsSc == NULL) {
+        perror("Error opening file");
+        return -1;
+    }
