@@ -6,17 +6,20 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-#1 
-awk -F';' '{ data[$3][$1] = 1; data[$4][$1] = 1 } 
+awk -F';' '{
+    data[$3][$1] = 1; 
+    data[$4][$1] = 1; 
+    if ($2 == 1) departures[$3]++;
+} 
 END { 
     for (city in data) {
         count = 0;
         for (id in data[city]) {
             count++;
         }
-        print count, city;
+        print count, city, departures[city];
     }
-}' data.csv > result_T.txt
+}' data.csv > combined_result.txt
 
 #execution du programme c pour trier le fichier result_T.txt dans l'ordre croissant
 
@@ -47,35 +50,7 @@ fi
 # Exécuter le programme avec les arguments fournis
 "$executable" "$@"
 
-rm result_T.txt
-
-head -10 resultatsTc.txt > result_T.txt
+head -10 resultatsTcombined.txt | sort -t ';' -k2> result_T.txt
 
 
-#2
-#sort tempT3.txt | uniq -c > tempBis.txt
-
-awk -F";" '$2 == 1 {print $4}' data.csv > villesDeDepart.csv
-awk -F";" '$2 == 1 {print $4}' data.csv | sort | uniq -c > villesDeDepart.csv
-
-
-# Fichier contenant les 10 villes de référence
-villes_reference="villes_reference.txt"
-
-# Fichier contenant les données
-donnees="villesDeDepart.csv"
-
-# Nom du fichier de sortie
-fichier_sortie="resultat_villes_trouvees.txt"
-
-# Effacer le fichier de sortie s'il existe déjà
-> "$fichier_sortie"
-
-# Parcours des villes de référence
-oldIFS=$IFS
-while IFS= read -r ville_reference; do
-    # Recherche de la ville dans les données et copie de la ligne dans le fichier de sortie
-    grep -i "$ville_reference" "$donnees" >> "$fichier_sortie"
-done < "$villes_reference"
-IFS=$oldIFS
 

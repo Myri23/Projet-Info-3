@@ -4,8 +4,11 @@
 #include <math.h>
  
 typedef struct VILLE{
-    char nomVille[50]; //nom de la ville
-    int traversee; //nombre de fois où la ville est traversée 
+    char nomVille[50]; //nom de la ville //char RouteID[50]
+    int traversee; //nombre de fois où la ville est traversée //int diff
+    //int max;
+    //int min;
+    //int diff = max - min;
 } VILLE;
  
 typedef struct AVL {
@@ -249,15 +252,17 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
 void infixeFichier(AVL *p, FILE *f) {
     if (!estVide(p)) {
         infixeFichier(p->pDroit, f);
-        fprintf(f, "[%d] [%s]\n", p->ville.traversee, p->ville.nomVille);
+        fprintf(f, "%d;%s\n", p->ville.traversee, p->ville.nomVille);
         infixeFichier(p->pGauche, f);
     }
 }
 
 
+
+
 int main(int argc, char** argv) {
-    FILE *result_T=fopen("result_T.txt", "r"); 
-    FILE *resultatsTc=fopen("resultatsTc.txt", "w");
+    FILE *result_T=fopen("combined_result.txt", "r"); 
+    FILE *resultatsTc=fopen("resultatsTcombined.txt", "w");
     
     if (result_T == NULL || resultatsTc == NULL) {
         perror("Error opening file");
