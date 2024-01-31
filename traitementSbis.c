@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct avl {
+typedef struct Distance{
   int id;
   float distance_min;
   float distance_max;
   float distance_moy;
   float diff;
+}Distance;
+
+typedef struct avl {
+  Distance Distance;
   struct avl *fd;
   struct avl *fg;  
   int equilibre;
