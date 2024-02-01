@@ -249,9 +249,6 @@ AVL* suppressionAVL(AVL* pAVL, TRAJET t, int* h) {
     return pAVL;
 }
 
-
-
-
 void infixeFichier(AVL *p, FILE *f) {
     if (!estVide(p)) {
         infixeFichier(p->pDroit, f);
@@ -259,6 +256,7 @@ void infixeFichier(AVL *p, FILE *f) {
         infixeFichier(p->pGauche, f);
     }
 }
+
 
 int main(int argc, char** argv) {
     FILE *tempS2=fopen("tempS2.txt", "r"); 
