@@ -34,16 +34,16 @@ END {
 
 #tri des donnees par le programme c
 
-# Compilation du programme C (Remplacez cette ligne par la commande réelle pour compiler le programme C)
+# Compilation du programme C 
 make
 
-# Attente jusqu'à ce que le fichier exécutable généré par la compilation existe
-while [ ! -f mon_programme ]; do
+# Mise ne pause du chronomètre jusqu'à ce que le fichier exécutable généré par la compilation existe
+while [ ! -f prog ]; do
     sleep 1
 done
 
 # Exécution du programme C
-./mon_programme
+./prog
 
 head -50 result_S1.txt > result_S.txt
 
