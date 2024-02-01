@@ -1,24 +1,5 @@
 #include "avlS.h"
 
-typedef struct TRAJET{ //TRAJET
-    char RouteID[50];
-    char max[50];
-    char min[50];
-    char moyenne[50];
-    float difference;
-} TRAJET;
-
-
- 
-typedef struct AVL {
-    TRAJET trajet;
-    struct AVL* pGauche;
-    struct AVL* pDroit;
-    int equilibre;
-} AVL;
-
-
-
 AVL* creerAVL(TRAJET t) {
     AVL* pNouveau = malloc(sizeof(AVL));
     if (pNouveau == NULL) {
