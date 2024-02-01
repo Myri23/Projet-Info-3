@@ -37,9 +37,3 @@ Semaine du 15/01 : Finalisation de tous les traitements.
 
 Semaine du 22/01 : Réajustement du projet et codage du Makefile.
 
-
- Il contiendra aussi un document au format PDF présentant
-la répartition des tâches au sein du groupe, le planning de réalisation, et
-les limitations fonctionnelles de votre application (la liste de ce qui n’est
-pas implémenté, et/ou de ce qui est implémenté mais qui ne fonctionne
-pas correctement/totalement).
