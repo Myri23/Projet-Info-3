@@ -24,6 +24,6 @@ typedef struct AVL {
     int equilibre;
 } AVL;
 
-
+AVL* creerAVL(TRAJET t);
 
 #endif /* AVLT_H */
