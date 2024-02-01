@@ -2,12 +2,11 @@ Projet CY-Trucks
 
 Ce projet a été realisé par Myriam Saadi, Sekkat Mehdi et Naela (MANQUE LE NOM DE FAMILLE)
 
-Guide d'utilisation 
-Suivez ces étapes simples pour optimiser votre expérience :
+Guide d'utilisation :
 
 Compilation du Programme
-Ouvrez votre terminal.
 
+Ouvrez votre terminal:
 Naviguez jusqu'au répertoire de votre projet à l'aide de la commande cd : exemple: "cd chemin/vers/votre_projet"
 Utilisez la commande make pour compiler le programme : "make"
 Une fois la compilation terminée avec succès, suivez ces étapes pour lancer le programme :
