@@ -1,5 +1,5 @@
-#ifndef AVLT_H
-#define AVLT_H
+#ifndef AVLS_H
+#define AVLS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,4 +43,4 @@ AVL* suppMinAVL(AVL* pAVL, int* h, TRAJET* pt);
 AVL* suppressionAVL(AVL* pAVL, TRAJET t, int* h);
 void infixeFichier(AVL *p, FILE *f);
 
-#endif /* AVLT_H */
+#endif /* AVLS_H */
