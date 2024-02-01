@@ -7,14 +7,6 @@ cat data.csv | cut -d";" -f1,6 | sort | uniq > tempD1.txt
  
 cat tempD1.txt | cut -d";" -f2 | sort | uniq -c | sort -r -k1 | head -10 > resultD1.txt
 
-# Fin du chronomètre
-end=$(date +%s)
-
-# Calcul de la durée d'exécution en secondes
-duration=$((end - start))
-
-# Affichage de la durée
-echo "Durée d'exécution : $duration secondes"
 
 # Appeler le script Gnuplot pour générer le graphique
 gnuplot -persist << GNU_CMD
@@ -46,3 +38,12 @@ set y2range [0:0]
 # Tracer l'histogramme horizontal à partir d'un fichier de données
 plot "temp/result_D1.txt" using 1:xtic(3) with histograms title "Nombre de Trajets"
 GNU_CMD
+
+# Fin du chronomètre
+end=$(date +%s)
+
+# Calcul de la durée d'exécution en secondes
+duration=$((end - start))
+
+# Affichage de la durée
+echo "Durée d'exécution : $duration secondes"
