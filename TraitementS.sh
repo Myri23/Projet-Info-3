@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Début du chronomètre
+start=$(date +%s)
+
+
 # Vérification du nombre de paramètres
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 data.csv"
@@ -32,5 +36,13 @@ END {
 
 head -50 result_S1.txt > result_S.txt
 
-#diff = distance max - distance min en shell ou en c
-#avl qui trie dans l'ordre decroissant le diff par rapport au route ID
+
+# Fin du chronomètre
+end=$(date +%s)
+
+# Calcul de la durée d'exécution en secondes
+duration=$((end - start))
+
+# Affichage de la durée
+echo "Durée d'exécution : $duration secondes"
+
