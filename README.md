@@ -4,8 +4,6 @@ Ce projet a été realisé par Myriam Saadi, Sekkat Mehdi et Naela (MANQUE LE NO
 
 Guide d'utilisation :
 
-Compilation du Programme
-
 Ouvrez votre terminal:                                                                                              
 Naviguez jusqu'au répertoire de votre projet à l'aide de la commande cd : exemple: "cd chemin/vers/votre_projet"                                                                  
 Utilisez la commande make pour compiler le programme : "make"                                                                                                                                               
