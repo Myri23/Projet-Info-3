@@ -1,3 +1,5 @@
+#include "avlT.h"
+
 int main(int argc, char** argv) {
     FILE *tempS2=fopen("tempS2.txt", "r"); 
     FILE *result_S1=fopen("result_S1.txt", "w");
