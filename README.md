@@ -37,3 +37,5 @@ Semaine du 15/01 : Finalisation de tous les traitements.
 
 Semaine du 22/01 : Réajustement du projet et codage du Makefile.
 
+RAJOUTER CE QUI NE MARCHE PAS TRES BIEN OU PAS DU tout
+
