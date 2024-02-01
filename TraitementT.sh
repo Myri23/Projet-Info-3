@@ -26,6 +26,8 @@ END {
 
 #execution du programme c pour trier le fichier result_T.txt dans l'ordre croissant
 
+#tri des donnees par le programme c
+
 # Chemins d'accès aux fichiers source
 mainT="/chemin/vers/mainT.c"
 avlT="/chemin/vers/avlT.c"
@@ -49,6 +51,11 @@ if [ ! -x "$executable" ]; then
         echo "Compilation réussie."
     fi
 fi
+
+# Attente jusqu'à ce que le fichier exécutable généré par la compilation existe
+while [ ! -f prog ]; do
+    sleep 1
+done
 
 # Exécuter le programme avec les arguments fournis
 "$executable" "$@"
