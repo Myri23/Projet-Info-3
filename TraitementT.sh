@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Début du chronomètre
+start=$(date +%s)
  
 # Vérification du nombre de paramètres
 if [ "$#" -ne 1 ]; then
@@ -52,5 +55,13 @@ fi
 
 head -10 resultatsTcombined.txt | sort -t ';' -k2> result_T.txt
 
+# Fin du chronomètre
+end=$(date +%s)
+
+# Calcul de la durée d'exécution en secondes
+duration=$((end - start))
+
+# Affichage de la durée
+echo "Durée d'exécution : $duration secondes"
 
 
