@@ -2,6 +2,9 @@
 
 #cat data.csv | cut -d";" -f5,6 | awk -F ';' '{noms[$1] += $2; sommes[$1] = $2} END {for (k in noms) print k ";" noms[k] ";" sommes[k]}' | sort -rn | head -10 > temp/result_D2.txt
 
+# Début du chronomètre
+start=$(date +%s)
+
 awk -F ';' '
   { noms[$6] += $5 }
   END {
@@ -10,3 +13,12 @@ awk -F ';' '
     }
   }
 ' data.csv | sort -t';' -k2 -rn | awk -F ';' '{print $1 ";" $2}' | tr ";" " " | head -10 > temp/result_D2.txt
+
+# Fin du chronomètre
+end=$(date +%s)
+
+# Calcul de la durée d'exécution en secondes
+duration=$((end - start))
+
+# Affichage de la durée
+echo "Durée d'exécution : $duration secondes"
