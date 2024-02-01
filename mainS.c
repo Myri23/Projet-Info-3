@@ -1,4 +1,4 @@
-#include "avlT.h"
+#include "avlS.h"
 
 int main(int argc, char** argv) {
     FILE *tempS2=fopen("tempS2.txt", "r"); 
