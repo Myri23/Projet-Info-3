@@ -7,15 +7,6 @@ cat data.csv | cut -d";" -f1,5 | awk -F';' '{ distances[$1]+=$2 } END { for (tra
 
 cat result_L.txt | sort -nr -t';' -k2 | head -10 | sort -rn -t';' -k1 > result_L2.txt
 
-# Fin du chronomètre
-end=$(date +%s)
-
-# Calcul de la durée d'exécution en secondes
-duration=$((end - start))
-
-# Affichage de la durée
-echo "Durée d'exécution : $duration secondes"
-
 # Appeler le script Gnuplot pour générer le graphique
 gnuplot -persist << GNU_CMD
 # Spécifier le terminal de sortie
@@ -41,3 +32,12 @@ set xtics rotate by 90 right
 # Tracer l'histogramme horizontal à partir d'un fichier de données
 plot "./temp/result_L2.txt" using 2:xtic(1) with histograms notitle
 GNU_CMD
+
+# Fin du chronomètre
+end=$(date +%s)
+
+# Calcul de la durée d'exécution en secondes
+duration=$((end - start))
+
+# Affichage de la durée
+echo "Durée d'exécution : $duration secondes"
