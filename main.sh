@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #gcc -o exe prog.c
 
 #./exe/
