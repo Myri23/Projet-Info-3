@@ -25,18 +25,28 @@ set boxwidth 2
 set ylabel "Conducteurs avec le plus de trajets (option -d1)"
 
 # Étiquettes des axes
-set y2tics
-set xlabel "Noms des Conducteurs"
-set y2label "Nombre de Trajets"
+set ytics
+set xlabel "Nombre de Trajets"
+set ylabel "Noms des Conducteurs"
 set xtics rotate by 90 right
 set ytics rotate by 90 right
 
-# Définir une plage pour l'axe y2
-set y2range [0:0]
+# Obtenir la valeur maximale de la colonne 1
+stats "demo/result_D1.txt" using 1 nooutput
+max_value = STATS_max + 50
+
+# Définir une plage pour l'axe y
+set yrange [0:max_value]
 
 # Tracer l'histogramme horizontal à partir d'un fichier de données
-plot "demo/result_D1.txt" using 1:xtic(3) with histograms title "Nombre de Trajets"
+plot "demo/result_D1.txt" using 1:xticlabels(strcol(2) . " " . strcol(3)) with histograms title "Nombre de Trajets"
+
+
+
 GNU_CMD
+
+
+
 
 
 # Fin du chronomètre

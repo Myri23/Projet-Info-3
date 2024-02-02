@@ -21,7 +21,7 @@ END {
         for (id in tableau[ville]) {
             compte++; 
         }
-        print compte " " ville " " departs[ville];
+        print compte " " departs[ville] " " ville;
     }
 }' data.csv > temp/temp_resultat_T.txt
 
@@ -49,9 +49,10 @@ executable="progc/execT"
 
 
 # Affichage des premières lignes triées
-head -10 temp/resultatsTc.txt | sort -t ';' -k2 > demo/result_T.txt
+head -10 temp/resultatsTc.txt | sort -t ' ' -k3 > demo/result_T.txt
 
-# Appeler le script Gnuplot pour générer le graphique
+
+# Tracer l'histogramme horizontal à partir d'un fichier de données
 gnuplot -persist << GNU_CMD
 # Spécifier le terminal de sortie
 set terminal png
@@ -73,10 +74,31 @@ set xlabel "Villes"
 set y2label "Nombre de Routes"
 set xtics rotate by 90 right
 
+
 # Tracer l'histogramme horizontal à partir d'un fichier de données
-plot "demo/result_T.txt" using 1:xtic(2) with histograms title "Colonne 2", \
-     '' using 3:xtic(2) with histograms title "Colonne 3"
+plot "demo/result_T.txt" using 1:xtic(3) with histograms title "Colonne 2", \
+     '' using 2:xtic(strcol(3) . " " . strcol(4)) with histograms title "Colonne 3"
 GNU_CMD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Fin du chronomètre

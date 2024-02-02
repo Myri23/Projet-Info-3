@@ -39,15 +39,7 @@ GNU_CMD
 
 
 
-
-
-
-
-
-
-
-
-# Fin du chronomètre
+#Fin du chronomètre
 end=$(date +%s)
 
 # Calcul de la durée d'exécution en secondes
@@ -55,3 +47,5 @@ duration=$((end - start))
 
 # Affichage de la durée
 echo "Durée d'exécution : $duration secondes"
+
+
