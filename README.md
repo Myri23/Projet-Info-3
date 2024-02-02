@@ -10,7 +10,7 @@ Intitulé de notre projet: [Projet_CY_Truck__2023_2024.pdf](https://github.com/M
 Guide d'utilisation :        
 
 1-Ouvrez votre terminal:                                                                                                                                                      
-2-Utilisez la commande make run pour lancer le programme :"bash main.sh data.csv <option>"                                                                                
+2-Utilisez cette commande lancer le programme :"bash main.sh data.csv <option>"                                                                                
 3-Deplus pour accompagner votre experience et votre patience pendant le chargement des traitements ,nous vous invitons à ecouter cette musique:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
