@@ -32,21 +32,22 @@ set boxwidth 2
 set ylabel "Conducteurs avec plus longue distance (option -d2)"
 
 # Étiquettes des axes
-set ytics
+set y2tics
 set xlabel "Noms des Conducteurs"
-set ylabel "Nombre de Trajets"
+set y2label "Nombre de Trajets"
 set xtics rotate by 90 right
-set ytics rotate by 90 right
+set y2tics rotate by 90 right
+unset ytics
 
 # Obtenir la valeur maximale de la colonne 1
 stats "demo/result_D2.txt" using 3 nooutput
 max_value = STATS_max + 10000
 
 # Définir une plage pour l'axe y
-set yrange [0:max_value]
+set y2range [0:max_value]
 
 # Style de police pour les étiquettes de l'axe y
-set ytics font ",8"
+set y2tics font ",8"
 
 # Tracer l'histogramme horizontal à partir d'un fichier de données
 plot "demo/result_D2.txt" using 3:xticlabels(strcol(1) . " " . strcol(2)) with histograms title "Nombre de Trajets"

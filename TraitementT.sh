@@ -67,38 +67,18 @@ set style fill solid
 set boxwidth 2
 
 # Titre du graphique
-set ylabel "option -t"
+set ylabel "Option -t"
 
 # Étiquettes des axes
 set xlabel "Villes"
-set y2label "Nombre de Routes"
+set y2label "Nombre de fois traversées"
 set xtics rotate by 90 right
 
 
-# Tracer l'histogramme horizontal à partir d'un fichier de données
+# Tracer l'histogramme vertical à partir d'un fichier de données
 plot "demo/result_T.txt" using 1:xtic(3) with histograms title "Colonne 2", \
      '' using 2:xtic(strcol(3) . " " . strcol(4)) with histograms title "Colonne 3"
 GNU_CMD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Fin du chronomètre

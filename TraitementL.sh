@@ -25,7 +25,7 @@ set style fill solid
 set boxwidth 1
 
 # Titre du graphique
-set title "Les 10 trajets les plus longs"
+set title "Les 10 trajets les plus longs (option -l)"
 
 # Étiquettes des axes
 set xlabel "Route ID"

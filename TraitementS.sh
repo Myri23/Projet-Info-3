@@ -27,7 +27,7 @@ END {
     for (routeID in maxDistances) {
         difference = maxDistances[routeID] - minDistances[routeID];
         moyenne = distancesSomme[routeID] / compteur[routeID];
-        print routeID ";" minDistances[routeID] ";" moyenne ";" maxDistances[routeID] ";" difference;
+        print routeID " " minDistances[routeID] " " moyenne " " maxDistances[routeID] " " difference;
     }
 }' data.csv > temp/temp_resultat_S.txt
 
@@ -60,6 +60,38 @@ executable="progc/execS"
 
 head -50 temp/resultatsSc.txt > demo/result_S.txt
 
+
+
+# Appeler le script Gnuplot pour générer le graphique
+gnuplot -persist << GNU_CMD
+
+# Spécifier le terminal de sortie
+set terminal png
+
+# Spécifier le nom du fichier de sortie
+set output "images/graphique_S.png"
+
+# Titre du graphique
+set title "Option -s"
+
+# Étiquettes des axes
+set xlabel "Identifiant des trajets" #On n'a pas pu mettre les identifiants des trajets sur l'axe des x, notre programme fait apparaitre la différence entre les distances max et min à la place.
+set ylabel "Distances en km"
+set xtics rotate by 90 right
+
+
+# Charger les données depuis le fichier
+plot "demo/result_S.txt" using 5:2 with lines title "Distance Min", \
+     "demo/result_S.txt" using 5:4 with lines title "Distance Max", \
+     "demo/result_S.txt" using 5:2:4 with filledcurves notitle lt rgb "#CCCCCC", \
+     "demo/result_S.txt" using 5:3 with lines title "Distance Moyenne", \
+     
+
+
+GNU_CMD
+
+
+
 # Fin du chronomètre
 end=$(date +%s)
 
@@ -68,3 +100,5 @@ duration=$((end - start))
 
 # Affichage de la durée
 echo "Durée d'exécution : $duration secondes"
+
+

@@ -2,6 +2,12 @@
 
 tmp="temp"
 img="images"
+dem="demo"
+dat="data"
+prc="progc"
+
+
+
 
 
 if [ -d "$tmp" ]; then
@@ -17,8 +23,26 @@ else
   mkdir "$img"
 fi
 
+if [ ! -d "$dem" ]; then
+  mkdir "$dem"
+fi
+
+
+if [ ! -d "$dat" ]; then
+  mkdir "$dat"
+fi
+
+
+if [ ! -d "$prc" ]; then
+  mkdir "$prc"
+fi
+
+
 chmod -R u=rwx $tmp
 chmod -R u=rwx $img
+chmod -R u=rwx $dem
+chmod -R u=rwx $dat
+chmod -R u=rwx $prc
 
 # Fonction pour afficher l'aide
 afficher_aide() {
