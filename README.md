@@ -65,4 +65,6 @@ Repartitions des tâches
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+Limitations de notre programme
+-
+Le dossier progc a été vidé par accident sur l'ordinateur de Myriam, les fichiers mainT.o et avlT.o ont été perdu et elle n'arrive plus à compiler les traitements T et S. On n'a pas mis ces fichiers sur github et on ne sait pas si ce problème peut arriver à nouveau. En sachant qu'avant ce problème de dernière minute tout fonctionnait très bien et tout a été chargé avant que ce problème n'arrive.  
