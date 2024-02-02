@@ -87,3 +87,5 @@ Limitations fonctionnelles de notre application
 sur le terminal! convert images/histogramme_horizontal_D1.png -rotate 90 images/histogramme_horizontal_D1.png
 sur le terminal: convert images/histogramme_horizontal_D2.png -rotate 90 images/histogramme_horizontal_D2.png
 pour retourner image
+
+bash main.sh data.csv <option>
