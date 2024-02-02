@@ -23,17 +23,17 @@ else
   mkdir "$img"
 fi
 
-if [ ! -d "$dem" ]; then
+if [ ! -e "$dem" ]; then
   mkdir "$dem"
 fi
 
 
-if [ ! -d "$dat" ]; then
+if [ ! -e "$dat" ]; then
   mkdir "$dat"
 fi
 
 
-if [ ! -d "$prc" ]; then
+if [ ! -e "$prc" ]; then
   mkdir "$prc"
 fi
 
