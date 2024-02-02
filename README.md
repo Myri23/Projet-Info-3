@@ -11,7 +11,7 @@ Guide d'utilisation :
 
 1-Ouvrez votre terminal:                                                                                                                                                      
 2-Utilisez la commande make run pour lancer le programme :"bash main.sh data.csv <option>"                                                                                
-3-deplus pour accompagner votre experience et votre patience pendant le chargement des traitements ,nous vous invitons à ecouter cette musique:
+3-Deplus pour accompagner votre experience et votre patience pendant le chargement des traitements ,nous vous invitons à ecouter cette musique:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Commande utilile:
@@ -26,6 +26,9 @@ Commande utilile:
 | -s     | Statistiques sur les étapes.                          |
 | -h     | Pour afficher l'aide.                                 |
 
+
+Pour le traitement D1, afin d'obtenir le graphique orienté correctement, veuillez utiliser la commande suivante dans le terminal :  convert images/histogramme_horizontal_D1.png -rotate 90 images/histogramme_horizontal_D1.png
+De même, pour le traitement D2, utilisez la commande suivante dans le terminal : convert images/histogramme_horizontal_D2.png -rotate 90 images/histogramme_horizontal_D2.png
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Planning: faire le choix
