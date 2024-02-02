@@ -83,3 +83,7 @@ semaine du 22 Janvier: Makefile et fin du main.sh
 semaine du 29 Janvier: Amélioration et résolution des dernières erreurs de nos codes
 
 Limitations fonctionnelles de notre application 
+
+sur le terminal! convert images/histogramme_horizontal_D1.png -rotate 90 images/histogramme_horizontal_D1.png
+sur le terminal: convert images/histogramme_horizontal_D2.png -rotate 90 images/histogramme_horizontal_D2.png
+pour retourner image
