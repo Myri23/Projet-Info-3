@@ -34,7 +34,7 @@ De même, pour le traitement D2, utilisez la commande suivante dans le terminal 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Planning: faire le choix
+Planning: 
 --
 
 | Semaine             | Tâches                                                                       |
