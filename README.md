@@ -47,7 +47,7 @@ Planning: faire le choix
 
 | Semaine             | Tâches                                                                       |
 |---------------------|------------------------------------------------------------------------------|
-| 4 Décembre          | Début du main.sh et répartition des tâches dans le groupe.                   |
+| 4/12                | Début du main.sh et répartition des tâches dans le groupe.                   |
 | 11 Décembre         | Continuation du main.sh et début du traitement D1.                           |
 | 18 Décembre         | Traitements D1, D2 et L.                                                    |
 | 25 Décembre         | Début des Traitements T et S.                                               |
