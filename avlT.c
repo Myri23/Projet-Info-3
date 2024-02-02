@@ -1,6 +1,6 @@
 #include "avlT.h"
 
-AVL* creerAVL(VILLE v) {
+AVL* creerAVL(VILLE v) {  //Fonction pour créer un nouveau nœud AVL avec un trajet donné
     AVL* pNouveau = malloc(sizeof(AVL));
     if (pNouveau == NULL) {
         exit(10);
@@ -12,11 +12,11 @@ AVL* creerAVL(VILLE v) {
     return pNouveau;
 }
 
-int estVide(AVL* p) {
+int estVide(AVL* p) {  // Fonction pour vérifier si un arbre AVL est vide
     return p == NULL;
 }
 
-int estFeuille(AVL* p) {
+int estFeuille(AVL* p) { // Fonction pour vérifier si un nœud AVL est une feuille
     return (!estVide(p) && p->pGauche == NULL && p->pDroit == NULL);
 }
  
@@ -263,7 +263,7 @@ AVL* suppressionAVL(AVL* pAVL, VILLE v, int* h) {
 }
 
 
-void infixeFichier(AVL *p, FILE *f) {
+void infixeFichier(AVL *p, FILE *f) { // Parcours infixe de l'arbre AVL et trier les valeurs dans l'autre decroissant
     if (!estVide(p)) {
         infixeFichier(p->pDroit, f);
         fprintf(f, "%d %s\n", p->ville.traversee, p->ville.nomVille);
