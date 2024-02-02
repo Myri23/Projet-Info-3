@@ -26,7 +26,7 @@ END {
 }' data.csv > temp/temp_resultat_T.txt
 
 # Mise ne pause du chronomètre jusqu'à ce que le fichier exécutable généré par la compilation existe
-while [ ! -f progc/execS ]; do
+while [ ! -f progc/execS ]; do 
     sleep 1
 done
 
