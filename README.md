@@ -18,7 +18,12 @@ deplus pour accompagner votre experience et votre patience pendant le chargement
 | -l     | Les 10 trajets les plus longs.                        |
 | -t     | Les 10 villes les plus traversées.                    |
 | -s     | Statistiques sur les étapes.                          |
-| -h     | Pour afficher l'aide.                                 |                                             
+| -h     | Pour afficher l'aide.                                 |   
+
+
+
+
+
 
 | Semaine             | Tâches                                                            |
 |---------------------|-------------------------------------------------------------------|
