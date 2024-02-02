@@ -10,7 +10,8 @@ Ouvrez votre terminal:
 Naviguez jusqu'au répertoire de votre projet à l'aide de la commande cd : exemple: "cd chemin/vers/votre_projet"                                                                  
 Utilisez la commande make pour compiler le programme : "make"                                                                                                                                               
 Utilisez la commande make run pour lancer le programme :"make run"                                                                                
-deplus pour accompagner votre experience et votre patience pendant le chargement des traitements , nous vous invitons à ecouter cette musique: 
+deplus pour accompagner votre experience et votre patience pendant le chargement des traitements , nous vous invitons à ecouter cette musique:
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 | Option | Description                                            |
