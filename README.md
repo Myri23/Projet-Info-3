@@ -54,9 +54,9 @@ Planning: faire le choix
 
 
 
-RAJOUTER CE QUI NE MARCHE PAS TRES BIEN OU PAS DU tout
 
-Projet_CY_Truck_preIng2_2023_2024
+
+
 
 Repartitions des tâches
 
@@ -77,10 +77,3 @@ Makefile : fait par Myriam SAADI
 
 Naëla BENMOHAMED et Myriam SAADI avons travaillé ensemble plusieurs fois, notamment en visio, car Naëla avait des difficultés à coder en C sur son ordinateur personnel et j'avais des difficultés à coder en shell sur le mien.
 
-Limitations fonctionnelles de notre application 
-
-sur le terminal! convert images/histogramme_horizontal_D1.png -rotate 90 images/histogramme_horizontal_D1.png
-sur le terminal: convert images/histogramme_horizontal_D2.png -rotate 90 images/histogramme_horizontal_D2.png
-pour retourner image
-
-bash main.sh data.csv <option>
