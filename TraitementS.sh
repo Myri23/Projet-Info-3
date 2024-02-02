@@ -1,19 +1,14 @@
 #!/bin/bash
 
-# Début du chronomètre
-start=$(date +%s)
+start=$(date +%s) # Début du chronomètre
 
-# Vérification du nombre de paramètres
-if [ "$#" -ne 1 ]; then
+if [ "$#" -ne 1 ]; then # Vérification du nombre de paramètres
     echo "Usage: $0 data.csv"
     exit 1
 fi
 
-#cut -d";" -f1,5 data.csv > tempS.txt
 
-# Trie et extrait les distances maximales et minimales pour chaque routeID
-
-awk -F ';' '{
+awk -F ';' '{ # Trie et extrait les distances maximales et minimales pour chaque routeID
     if (!($1 in minDistances) || $5 < minDistances[$1]) {
         minDistances[$1] = $5;
     }
@@ -34,17 +29,15 @@ END {
 #tri des donnees par le programme c
 
 
-# Mise ne pause du chronomètre jusqu'à ce que le fichier exécutable généré par la compilation existe
-while [ ! -f progc/execS ]; do
+while [ ! -f progc/execS ]; do # Mise ne pause du chronomètre jusqu'à ce que le fichier exécutable généré par la compilation existe
     sleep 1
 done
 
-# Compilation avec make
-make -C progc/ 
+
+make -C progc/  # Compilation avec make
 
 
-# Vérification de la compilation
-if [ $? -ne 0 ]; then
+if [ $? -ne 0 ]; then # Vérification de la compilation
     echo "Erreur lors de la compilation."
     exit 1
 else
@@ -52,27 +45,24 @@ else
 fi
 
 
-# Chemin d'accès à l'exécutable
-executable="progc/execS"
+executable="progc/execS" # Chemin d'accès à l'exécutable
 
-# Exécution du programme c avec les arguments fournis pour trier le fichier temp_resultat_T.txt dans l'ordre décroissant
-"$executable" "$@"
+
+"$executable" "$@" # Exécution du programme c avec les arguments fournis pour trier le fichier temp_resultat_T.txt dans l'ordre décroissant
 
 head -50 temp/resultatsSc.txt > demo/result_S.txt
 
 
+gnuplot -persist << GNU_CMD # Appeler le script Gnuplot pour générer le graphique
 
-# Appeler le script Gnuplot pour générer le graphique
-gnuplot -persist << GNU_CMD
 
-# Spécifier le terminal de sortie
-set terminal png
+set terminal png # Spécifier le terminal de sortie
 
-# Spécifier le nom du fichier de sortie
-set output "images/graphique_S.png"
 
-# Titre du graphique
-set title "Option -s"
+set output "images/graphique_S.png" # Spécifier le nom du fichier de sortie
+
+
+set title "Option -s" # Titre du graphique
 
 # Étiquettes des axes
 set xlabel "Identifiant des trajets" #On n'a pas pu mettre les identifiants des trajets sur l'axe des x, notre programme fait apparaitre la différence entre les distances max et min à la place.
@@ -80,8 +70,8 @@ set ylabel "Distances en km"
 set xtics rotate by 90 right
 
 
-# Charger les données depuis le fichier
-plot "demo/result_S.txt" using 5:2 with lines title "Distance Min", \
+
+plot "demo/result_S.txt" using 5:2 with lines title "Distance Min", \ # Charger les données depuis le fichier result_S.txt
      "demo/result_S.txt" using 5:4 with lines title "Distance Max", \
      "demo/result_S.txt" using 5:2:4 with filledcurves notitle lt rgb "#CCCCCC", \
      "demo/result_S.txt" using 5:3 with lines title "Distance Moyenne", \
@@ -91,14 +81,11 @@ plot "demo/result_S.txt" using 5:2 with lines title "Distance Min", \
 GNU_CMD
 
 
+end=$(date +%s) # Fin du chronomètre
 
-# Fin du chronomètre
-end=$(date +%s)
+duration=$((end - start)) # Calcul de la durée d'exécution en secondes
 
-# Calcul de la durée d'exécution en secondes
-duration=$((end - start))
 
-# Affichage de la durée
-echo "Durée d'exécution : $duration secondes"
+echo "Durée d'exécution : $duration secondes" # Affichage de la durée
 
 
