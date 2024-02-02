@@ -1,6 +1,6 @@
 Projet CY-Trucks 
 
-Ce projet a été realisé par Myriam Saadi, Sekkat Mehdi et Naela (MANQUE LE NOM DE FAMILLE)
+Ce projet a été realisé par Myriam Saadi, Sekkat Mehdi et Naëla Benmohamed
 
 Guide d'utilisation :
 
