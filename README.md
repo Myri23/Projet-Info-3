@@ -28,6 +28,8 @@ Commande utilile:
 
 
 Pour le traitement D1, afin d'obtenir le graphique orienté correctement, veuillez utiliser la commande suivante dans le terminal :  convert images/histogramme_horizontal_D1.png -rotate 90 images/histogramme_horizontal_D1.png
+
+
 De même, pour le traitement D2, utilisez la commande suivante dans le terminal : convert images/histogramme_horizontal_D2.png -rotate 90 images/histogramme_horizontal_D2.png
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
