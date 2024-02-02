@@ -2,6 +2,7 @@
 Projet CY-Trucks
 
 𝓒𝓮 𝓹𝓻𝓸𝓳𝓮𝓽 𝓪 𝓮́𝓽𝓮́ 𝓻𝓮́𝓪𝓵𝓲𝓼𝓮́ 𝓹𝓪𝓻 𝓜𝔂𝓻𝓲𝓪𝓶 𝓢𝓪𝓪𝓭𝓲, 𝓢𝓮𝓴𝓴𝓪𝓽 𝓜𝓮𝓱𝓭𝓲 𝓮𝓽 𝓝𝓪𝓮̈𝓵𝓪 𝓑𝓮𝓷𝓶𝓸𝓱𝓪𝓶𝓮𝓭.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Guide d'utilisation :
 
@@ -10,6 +11,7 @@ Naviguez jusqu'au répertoire de votre projet à l'aide de la commande cd : exem
 Utilisez la commande make pour compiler le programme : "make"                                                                                                                                               
 Utilisez la commande make run pour lancer le programme :"make run"                                                                                
 deplus pour accompagner votre experience et votre patience pendant le chargement des traitements , nous vous invitons à ecouter cette musique: 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 | Option | Description                                            |
 |--------|--------------------------------------------------------|
@@ -33,6 +35,8 @@ deplus pour accompagner votre experience et votre patience pendant le chargement
 | 08/01               | Amélioration des traitements T et S.                             |
 | 15/01               | Finalisation de tous les traitements.                            |
 | 22/01               | Réajustement du projet et codage du Makefile.                    |
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 RAJOUTER CE QUI NE MARCHE PAS TRES BIEN OU PAS DU tout
 
