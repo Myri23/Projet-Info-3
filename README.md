@@ -14,6 +14,8 @@ Utilisez la commande make run pour lancer le programme :"make run"
 deplus pour accompagner votre experience et votre patience pendant le chargement des traitements , nous vous invitons à ecouter cette musique:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Commande utilile:
+--
 
 | Option | Description                                            |
 |--------|--------------------------------------------------------|
