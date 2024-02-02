@@ -11,7 +11,7 @@ Guide d'utilisation :
 
 1-Ouvrez votre terminal:                                                                                                                                                      
 2-Utilisez cette commande lancer le programme :"bash main.sh data.csv <option>"                                                                                
-3-Deplus pour accompagner votre experience et votre patience pendant le chargement des traitements ,nous vous invitons à ecouter cette musique: https://www.youtube.com/watch?v=8r8wsvHUbCo&ab_channel=AlexanderZolotov
+3-De plus pour accompagner votre experience et votre patience pendant le chargement des traitements, nous vous invitons à écouter cette musique: https://www.youtube.com/watch?v=8r8wsvHUbCo&ab_channel=AlexanderZolotov
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Commande utilile:
