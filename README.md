@@ -47,3 +47,39 @@ Planning:
 
 RAJOUTER CE QUI NE MARCHE PAS TRES BIEN OU PAS DU tout
 
+Projet_CY_Truck_preIng2_2023_2024
+
+Repartitions des tâches
+
+Traitement D1 : fait par Naëla BENMOHAMED
+Traitement D2 : fait par Naëla BENMOHAMED et Myriam SAADI
+Traitement L : fait par Naëla BENMOHAMED
+Traitement T : fait par Naëla BENMOHAMED et Myriam SAADI
+Traitement S : fait par Mehdi SEKKAT
+
+Main.sh: le script shell principal a été fait par Naëla BENMOHAMED, Mehdi SEKKAT et Myriam SAADI. Nous avons travaillé dessus ensemble plusieurs mais nous y avons aussi ajouté des choses individuellement. Voici la répartition des tâches pour ce script shell:
+Arguments du script shell: fait par Naëla BENMOHAMED
+Compilation et execution du programme c: fait par Myriam SAADI
+Dossier temp et images: fait par Naëla BENMOHAMED et Myriam SAADI
+Affichage du temps de traitement de chaque programme: fait par Mehdi SEKKAT
+GnuPlot: fait par Naëla BENMOHAMED
+
+Makefile : fait par Myriam SAADI
+
+Naëla BENMOHAMED et Myriam SAADI (moi) avons travaillé ensemble plusieurs fois, notamment en visio, car Naëla avait des difficultés à coder en C sur son ordinateur personnel et j'avais des difficultés à coder en shell sur le mien.
+
+
+Planning de réalisation
+
+semaine du 27 Décembre: 
+semaine du 4 Décembre: Début du main.sh et répartitions des tâches dans le groupe
+semaine du 11 Décembre: Continuation du main.sh et début du traitement D1
+semaine du 18 Décembre: Traitements D1, D2 et L
+semaine du 25 Décembre: Début des Traitement T et S
+semaine du 1 Janvier: Partie C  (AVL) du Traitement T 
+semaine du 8 Janvier: Début de la partie Shell du Traitement T et début de la partie C du traitement S
+semaine du 15 Janvier: Partie Shell du Traitement T
+semaine du 22 Janvier: Makefile et fin du main.sh
+semaine du 29 Janvier: Amélioration et résolution des dernières erreurs de nos codes
+
+Limitations fonctionnelles de notre application 
