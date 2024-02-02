@@ -52,19 +52,13 @@ Planning: faire le choix
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-Repartitions des tâches
-
-Traitement D1 : fait par Naëla BENMOHAMED
-Traitement D2 : fait par Naëla BENMOHAMED et Myriam SAADI
-Traitement L : fait par Naëla BENMOHAMED
-Traitement T : fait par Naëla BENMOHAMED et Myriam SAADI
-Traitement S : fait par Mehdi SEKKAT
+| Tâche           | Personne(s) assignée(s)             |
+|-----------------|-------------------------------------|
+| Traitement D1   | Naëla BENMOHAMED                    |
+| Traitement D2   | Naëla BENMOHAMED, Myriam SAADI      |
+| Traitement L    | Naëla BENMOHAMED                    |
+| Traitement T    | Naëla BENMOHAMED, Myriam SAADI      |
+| Traitement S    | Mehdi SEKKAT, Myriam SAADI          |
 
 Main.sh: le script shell principal a été fait par Naëla BENMOHAMED, Mehdi SEKKAT et Myriam SAADI. Nous avons travaillé dessus ensemble plusieurs mais nous y avons aussi ajouté des choses individuellement. Voici la répartition des tâches pour ce script shell:
 Arguments du script shell: fait par Naëla BENMOHAMED
