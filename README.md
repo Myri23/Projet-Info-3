@@ -14,11 +14,11 @@ deplus pour accompagner votre experience et votre patience pendant le chargement
            | Option | Description                                            |
            |--------|--------------------------------------------------------|
            | -d1    | Conducteurs avec le plus grand nombre de trajets.      |
-           | -d2    | Conducteurs ayant parcouru la plus grande distance.   |
-           | -l     | Les 10 trajets les plus longs.                        |
-           | -t     | Les 10 villes les plus traversées.                    |
-           | -s     | Statistiques sur les étapes.                          |
-           | -h     | Pour afficher l'aide.                                 |   
+           | -d2    | Conducteurs ayant parcouru la plus grande distance.    |
+           | -l     | Les 10 trajets les plus longs.                         |
+           | -t     | Les 10 villes les plus traversées.                     |
+           | -s     | Statistiques sur les étapes.                           |
+           | -h     | Pour afficher l'aide.                                  |   
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
