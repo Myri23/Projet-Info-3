@@ -1,9 +1,8 @@
 #!/bin/bash
 
-#cat data.csv | cut -d";" -f5,6 | awk -F ';' '{noms[$1] += $2; sommes[$1] = $2} END {for (k in noms) print k ";" noms[k] ";" sommes[k]}' | sort -rn | head -10 > temp/result_D2.txt
-
 # Début du chronomètre
 start=$(date +%s)
+
 
 awk -F ';' '
   { noms[$6] += $5 }
@@ -12,8 +11,7 @@ awk -F ';' '
       print k ";" noms[k]
     }
   }
-' data.csv | sort -t';' -k2 -rn | awk -F ';' '{print $1 ";" $2}' | tr ";" " " | head -10 > temp/result_D2.txt
-
+' data.csv | sort -t';' -k2 -rn | awk -F ';' '{print $1 ";" $2}' | tr ";" " " | head -10 > demo/result_D2.txt
 
 # Appeler le script Gnuplot pour générer le graphique
 gnuplot -persist << GNU_CMD
@@ -21,7 +19,7 @@ gnuplot -persist << GNU_CMD
 set terminal png
 
 # Spécifier le nom du fichier de sortie
-set output "histogramme_horizontal_D2.png"
+set output "images/histogramme_horizontal_D2.png"
 
 # Style de remplissage des barres
 set style fill solid
@@ -38,7 +36,7 @@ set y2label "Nombre de Trajets"
 set xtics rotate by 90 right
 
 # Tracer l'histogramme horizontal à partir d'un fichier de données
-plot "temp/result_D2.txt" using 3:xtic(2) with histograms title "Nombre de Trajets"
+plot "demo/result_D2.txt" using 3:xtic(2) with histograms title "Nombre de Trajets"
 GNU_CMD
 
 # Fin du chronomètre

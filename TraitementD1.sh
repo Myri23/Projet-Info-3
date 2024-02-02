@@ -3,10 +3,9 @@
 # Début du chronomètre
 start=$(date +%s)
 
-cat data.csv | cut -d";" -f1,6 | sort | uniq > tempD1.txt
+cat data.csv | cut -d";" -f1,6 | sort | uniq > temp/tempD1.txt
  
-cat tempD1.txt | cut -d";" -f2 | sort | uniq -c | sort -r -k1 | head -10 > resultD1.txt
-
+cat temp/tempD1.txt | cut -d";" -f2 | sort | uniq -c | sort -r -k1 | head -10 > demo/result_D1.txt
 
 # Appeler le script Gnuplot pour générer le graphique
 gnuplot -persist << GNU_CMD
@@ -14,7 +13,7 @@ gnuplot -persist << GNU_CMD
 set terminal png
 
 # Spécifier le nom du fichier de sortie
-set output "histogramme_horizontal_D1.png"
+set output "images/histogramme_horizontal_D1.png"
 
 # Style de remplissage des barres
 set style fill solid
@@ -36,8 +35,9 @@ set ytics rotate by 90 right
 set y2range [0:0]
 
 # Tracer l'histogramme horizontal à partir d'un fichier de données
-plot "temp/result_D1.txt" using 1:xtic(3) with histograms title "Nombre de Trajets"
+plot "demo/result_D1.txt" using 1:xtic(3) with histograms title "Nombre de Trajets"
 GNU_CMD
+
 
 # Fin du chronomètre
 end=$(date +%s)

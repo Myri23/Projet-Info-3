@@ -1,13 +1,5 @@
 #!/bin/bash
 
-#gcc -o exe prog.c
-
-#./exe/
-
-cat data.csv
-
-#mettre verification c
-
 tmp="temp"
 img="images"
 
@@ -24,8 +16,6 @@ if [ -d "$img" ]; then
 else
   mkdir "$img"
 fi
-
-
 
 chmod -R u=rwx $tmp
 chmod -R u=rwx $img
@@ -70,18 +60,23 @@ while [ $# -gt 0 ]; do
     case "$1" in
         -d1|--optiond1)
             echo "Traitement avec l'option d1 pour le fichier $fichier"
+            source TraitementD1.sh
             ;;
         -d2|--optiond2)
             echo "Traitement avec l'option d2 pour le fichier $fichier"
+            source TraitementD2.sh
             ;;
         -l|--optionl)
             echo "Traitement avec l'option l pour le fichier $fichier"
+            source TraitementL.sh
             ;;
         -t|--optiont)
             echo "Traitement avec l'option t pour le fichier $fichier"
+            source TraitementT.sh
             ;;
         -s|--options)
             echo "Traitement avec l'option s pour le fichier $fichier"
+            source TraitementS.sh
             ;;
         *)
             echo "Option inconnue : $1"

@@ -3,9 +3,12 @@
 # Début du chronomètre
 start=$(date +%s)
 
-cat data.csv | cut -d";" -f1,5 | awk -F';' '{ distances[$1]+=$2 } END { for (trajet in distances) print trajet ";" distances[trajet] }' > result_L.txt
+cut -d";" -f1,5 data.csv | awk -F';' '{ distances[$1]+=$2 } END { for (trajet in distances) print trajet " " distances[trajet] }' > temp/result_L2.txt
 
-cat result_L.txt | sort -nr -t';' -k2 | head -10 | sort -rn -t';' -k1 > result_L2.txt
+sort -nr -t' ' -k2 temp/result_L2.txt | head -10 | sort -rn -t' ' -k1 > demo/result_L.txt
+
+
+
 
 # Appeler le script Gnuplot pour générer le graphique
 gnuplot -persist << GNU_CMD
@@ -13,7 +16,7 @@ gnuplot -persist << GNU_CMD
 set terminal png
 
 # Spécifier le nom du fichier de sortie
-set output "histogramme_L.png"
+set output "images/histogramme_L.png"
 
 # Style de remplissage des barres
 set style fill solid
@@ -29,9 +32,20 @@ set xlabel "Route ID"
 set ylabel "Distances (km)"
 set xtics rotate by 90 right
 
+
 # Tracer l'histogramme horizontal à partir d'un fichier de données
-plot "./temp/result_L2.txt" using 2:xtic(1) with histograms notitle
+plot "./demo/result_L.txt" using 2:xticlabels(1) with histograms notitle
 GNU_CMD
+
+
+
+
+
+
+
+
+
+
 
 # Fin du chronomètre
 end=$(date +%s)
