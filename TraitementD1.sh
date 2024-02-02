@@ -35,7 +35,7 @@ max_value = STATS_max + 50
 
 set y2range [0:max_value] # Définir une plage pour l'axe y
 
-plot "demo/result_D1.txt" using 1:xticlabels(strcol(2) . " " . strcol(3)) with histograms title "Nombre de Trajets" # Tracer l'histogramme horizontal à partir d'un fichier de données
+plot "demo/result_D1.txt" using 1:xticlabels(strcol(2) . " " . strcol(3)) with histograms title "Nombre de Trajets" #Tracer l'histogramme horizontal à partir de result_D1.txt
 
 
 
