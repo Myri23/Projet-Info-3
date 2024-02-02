@@ -22,21 +22,20 @@ int main(int argc, char** argv) {
             continue; // Ligne vide ou non valide, passer à la suivante
         }
 
-        // Conversion de l'entier
-        int traversee = atoi(ligne);
 
-        // Lire le nom de la ville restant sur la ligne
-        ligne = strtok(NULL, "\n");
+        int traversee = atoi(ligne); // Conversion de l'entier
+
+
+        ligne = strtok(NULL, "\n");  // Lire le nom de la ville restant sur la ligne
         if (ligne == NULL) {
             continue; // Ligne non valide, passer à la suivante
         }
 
-        // Utiliser ligne comme nom de ville
-        strcpy(ville.nomVille, ligne);
+
+        strcpy(ville.nomVille, ligne);  // Utiliser ligne comme nom de ville
         ville.traversee = traversee;
 
-        // Insérer dans l'AVL
-        pRoot = insertionAVL(pRoot, ville, &h);
+        pRoot = insertionAVL(pRoot, ville, &h);  // Insérer dans l'AVL
     }
 
     infixeFichier(pRoot, resultatsTc);
