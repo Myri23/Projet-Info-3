@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     while (fgets(line, sizeof(line), temp_resultat_S) != NULL) {
         char* token = strtok(line, " "); // Séparer la ligne par des points-virgules
         if (token == NULL) {
-            continue; // Ligne vide ou non valide, passer à la suivante
+            continue;  // Ligne vide ou non valide, passer à la suivante
         }
 
         // Copie du RouteID
