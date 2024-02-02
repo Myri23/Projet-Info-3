@@ -30,7 +30,7 @@ Commande utilile:
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Planning:
+Planning: faire le choix
 --
 
 | Semaine             | Tâches                                                            |
@@ -44,6 +44,19 @@ Planning:
 | 22/01               | Réajustement du projet et codage du Makefile.                    |
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+| Semaine             | Tâches                                                                       |
+|---------------------|------------------------------------------------------------------------------|
+| 4 Décembre          | Début du main.sh et répartition des tâches dans le groupe.                   |
+| 11 Décembre         | Continuation du main.sh et début du traitement D1.                           |
+| 18 Décembre         | Traitements D1, D2 et L.                                                    |
+| 25 Décembre         | Début des Traitements T et S.                                               |
+| 1 Janvier           | Partie C (AVL) du Traitement T.                                             |
+| 8 Janvier           | Début de la partie Shell du Traitement T et début de la partie C du traitement S. |
+| 15 Janvier          | Partie Shell du Traitement T.                                               |
+| 22 Janvier          | Makefile et fin du main.sh.                                                 |
+| 29 Janvier          | Amélioration et résolution des dernières erreurs de nos codes.               |
+
 
 RAJOUTER CE QUI NE MARCHE PAS TRES BIEN OU PAS DU tout
 
@@ -71,7 +84,6 @@ Naëla BENMOHAMED et Myriam SAADI (moi) avons travaillé ensemble plusieurs fois
 
 Planning de réalisation
 
-semaine du 27 Décembre: 
 semaine du 4 Décembre: Début du main.sh et répartitions des tâches dans le groupe
 semaine du 11 Décembre: Continuation du main.sh et début du traitement D1
 semaine du 18 Décembre: Traitements D1, D2 et L
