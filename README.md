@@ -52,6 +52,9 @@ Planning: faire le choix
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Repartitions des tâches
+-
+
 | Tâche           | Personne(s) assignée(s)             |
 |-----------------|-------------------------------------|
 | Traitement D1   | Naëla BENMOHAMED                    |
@@ -60,14 +63,6 @@ Planning: faire le choix
 | Traitement T    | Naëla BENMOHAMED, Myriam SAADI      |
 | Traitement S    | Mehdi SEKKAT, Myriam SAADI          |
 
-Main.sh: le script shell principal a été fait par Naëla BENMOHAMED, Mehdi SEKKAT et Myriam SAADI. Nous avons travaillé dessus ensemble plusieurs mais nous y avons aussi ajouté des choses individuellement. Voici la répartition des tâches pour ce script shell:
-Arguments du script shell: fait par Naëla BENMOHAMED
-Compilation et execution du programme c: fait par Myriam SAADI
-Dossier temp et images: fait par Naëla BENMOHAMED et Myriam SAADI
-Affichage du temps de traitement de chaque programme: fait par Mehdi SEKKAT
-GnuPlot: fait par Naëla BENMOHAMED
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Makefile : fait par Myriam SAADI
-
-Naëla BENMOHAMED et Myriam SAADI avons travaillé ensemble plusieurs fois, notamment en visio, car Naëla avait des difficultés à coder en C sur son ordinateur personnel et j'avais des difficultés à coder en shell sur le mien.
 
