@@ -1,10 +1,10 @@
 #include "avlS.h"
 
 int main(int argc, char** argv) {
-    FILE *tempS2=fopen("tempS2.txt", "r"); 
-    FILE *result_S1=fopen("result_S1.txt", "w");
+    FILE *temp_resultat_S=fopen("temp/temp_resultat_S.txt", "r"); 
+    FILE *resultatsSc=fopen("temp/resultatsSc.txt", "w");
     
-    if (tempS2 == NULL || result_S1 == NULL) {
+    if (temp_resultat_S == NULL || resultatsSc == NULL) {
         perror("Error opening file");
         return -1;
     }
@@ -15,8 +15,8 @@ int main(int argc, char** argv) {
     TRAJET trajet;
     int h = 0; // Initialisation de la hauteur pour l'insertion
     char line[100]; // Taille suffisante pour stocker chaque ligne
-    while (fgets(line, sizeof(line), tempS2) != NULL) {
-        char* token = strtok(line, ";"); // Séparer la ligne par des points-virgules
+    while (fgets(line, sizeof(line), temp_resultat_S) != NULL) {
+        char* token = strtok(line, " "); // Séparer la ligne par des points-virgules
         if (token == NULL) {
             continue; // Ligne vide ou non valide, passer à la suivante
         }
@@ -25,14 +25,14 @@ int main(int argc, char** argv) {
         strcpy(trajet.RouteID, token);
 
         // Copie du min
-        token = strtok(NULL, ";");
+        token = strtok(NULL, " ");
         if (token == NULL) {
             continue; // Ligne non valide, passer à la suivante
         }
         strcpy(trajet.min, token);
 
         // Copie de la moyenne
-        token = strtok(NULL, ";");
+        token = strtok(NULL, " ");
         if (token == NULL) {
             continue; // Ligne non valide, passer à la suivante
         }
@@ -40,14 +40,14 @@ int main(int argc, char** argv) {
 
 
         // Copie du max
-        token = strtok(NULL, ";");
+        token = strtok(NULL, " ");
         if (token == NULL) {
             continue; // Ligne non valide, passer à la suivante
         }
         strcpy(trajet.max, token);
 
         // Conversion de la différence en float
-        token = strtok(NULL, ";");
+        token = strtok(NULL, " ");
         if (token == NULL) {
             continue; // Ligne non valide, passer à la suivante
         }
@@ -57,12 +57,12 @@ int main(int argc, char** argv) {
         pRoot = insertionAVL(pRoot, trajet, &h);
     }
 
-    // Écriture de l'AVL dans le fichier result_S1.txt
-    infixeFichier(pRoot, result_S1);
+    // Écriture de l'AVL dans le fichier resultatsSc.txt
+    infixeFichier(pRoot, resultatsSc);
 
     // Fermeture des fichiers
-    fclose(tempS2);
-    fclose(result_S1);
+    fclose(temp_resultat_S);
+    fclose(resultatsSc);
     
     return 0;
 }

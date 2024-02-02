@@ -2,10 +2,10 @@
 
 int main(int argc, char** argv) {
 
-    FILE *result_T=fopen("result_T.txt", "r"); 
-    FILE *resultatsTc=fopen("resultatsTc.txt", "w");
+    FILE *temp_resultat_T=fopen("temp/temp_resultat_T.txt", "r"); 
+    FILE *resultatsTc=fopen("temp/resultatsTc.txt", "w");
     
-    if (result_T == NULL || resultatsTc == NULL) {
+    if (temp_resultat_T == NULL || resultatsTc == NULL) {
         perror("Error opening file");
         return -1;
     }
@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
     VILLE ville;
     int h = 0; // Initialisation de la hauteur pour l'insertion
     char line[100]; // Taille suffisante pour stocker chaque ligne
-    while (fgets(line, sizeof(line), result_T) != NULL) {
+    while (fgets(line, sizeof(line), temp_resultat_T) != NULL) {
         char* ligne = strtok(line, " "); // Séparer la ligne par des espaces
         if (ligne == NULL) {
             continue; // Ligne vide ou non valide, passer à la suivante
@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
 
     infixeFichier(pRoot, resultatsTc);
 
-    fclose(result_T);
+    fclose(temp_resultat_T);
     fclose(resultatsTc);
 
     return 0;

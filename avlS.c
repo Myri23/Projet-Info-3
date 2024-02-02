@@ -102,6 +102,43 @@ void ajoutFilsGauche(AVL* p, TRAJET t) {
 }
 
 
+int max2(int a, int b) {
+    if ( a >= b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+int min2(int a, int b) {
+    if ( a >= b) {
+        return b;
+    } else {
+        return a;
+    }
+}
+
+int max3(int a, int b, int c) {
+    if ( a >= b && a >= c) {
+        return a;
+    } else if ( b >= a && b >= c) {
+        return b;
+    } else {
+        return c;
+    }
+}
+
+int min3(int a, int b, int c) {
+    if ( a <= b && a <= c) {
+        return a;
+    } else if ( b <= a && b <= c) {
+        return b;
+    } else {
+        return c;
+    }
+}
+
+
 AVL* RotationGauche(AVL* pAVL) {
     AVL* pivot;
     int eq_a;
@@ -112,8 +149,8 @@ AVL* RotationGauche(AVL* pAVL) {
  
     eq_a = pAVL->equilibre;
     eq_p = pivot->equilibre;
-    pAVL->equilibre = eq_a - fmax(eq_p, 0) - 1;
-    pivot->equilibre = fmin(eq_a - 2, fmin(eq_a + eq_p - 2, eq_p - 1));
+    pAVL->equilibre = eq_a - max2(eq_p, 0) - 1;
+    pivot->equilibre = min3(eq_a - 2, eq_a + eq_p - 2, eq_p - 1);
     pAVL = pivot;
     return pAVL;
 }
@@ -128,8 +165,8 @@ AVL* RotationDroite(AVL* pAVL) {
  
     eq_a = pAVL->equilibre;
     eq_p = pivot->equilibre;
-    pAVL->equilibre = eq_a - fmin(eq_p, 0) + 1;
-    pivot->equilibre = fmax(eq_a + 2, fmax(eq_a + eq_p + 2, eq_p + 1));
+    pAVL->equilibre = eq_a - min2(eq_p, 0) + 1;
+    pivot->equilibre = max3(eq_a + 2, eq_a + eq_p + 2, eq_p + 1);
     pAVL = pivot;
     return pAVL;
 }
@@ -232,7 +269,7 @@ AVL* suppressionAVL(AVL* pAVL, TRAJET t, int* h) {
 void infixeFichier(AVL *p, FILE *f) {
     if (!estVide(p)) {
         infixeFichier(p->pDroit, f);
-        fprintf(f, "%s;%s;%s;%s;%f\n", p->trajet.RouteID, p->trajet.min, p->trajet.moyenne, p->trajet.max, p->trajet.difference);
+        fprintf(f, "%s %s %s %s %f\n", p->trajet.RouteID, p->trajet.min, p->trajet.moyenne, p->trajet.max, p->trajet.difference);
         infixeFichier(p->pGauche, f);
     }
 }
