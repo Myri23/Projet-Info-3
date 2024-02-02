@@ -19,21 +19,15 @@ Options du Script :
 -s : Statistiques sur les étapes.                            
 -h : Pour afficher l'aide.                                              
 
-Planning :
-
-Semaine du 11/12 : Découverte du projet.
-
-Semaine du 18/12 : Première approche du code en Shell avec les traitements D1 et D2.
-
-Semaine du 25/12 : Amélioration des traitements D1 et D2, et début de la réflexion sur le traitement L.
-
-Semaine du 01/01 : Traitement L amélioré, commencement de la réflexion pour les traitements T et S.
-
-Semaine du 08/01 : Amélioration des traitements T et S.
-
-Semaine du 15/01 : Finalisation de tous les traitements.
-
-Semaine du 22/01 : Réajustement du projet et codage du Makefile.
+| Semaine             | Tâches                                                            |
+|---------------------|-------------------------------------------------------------------|
+| 11/12               | Découverte du projet.                                            |
+| 18/12               | Première approche du code en Shell avec les traitements D1 et D2. |
+| 25/12               | Amélioration des traitements D1 et D2, début de la réflexion sur le traitement L. |
+| 01/01               | Traitement L amélioré, commencement de la réflexion pour les traitements T et S. |
+| 08/01               | Amélioration des traitements T et S.                             |
+| 15/01               | Finalisation de tous les traitements.                            |
+| 22/01               | Réajustement du projet et codage du Makefile.                    |
 
 RAJOUTER CE QUI NE MARCHE PAS TRES BIEN OU PAS DU tout
 
