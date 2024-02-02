@@ -7,13 +7,11 @@ Projet CY-Trucks
 Intitulé de notre projet: [Projet_CY_Truck__2023_2024.pdf](https://github.com/Myri23/Projet-Info-3/files/14142567/Projet_CY_Truck__2023_2024.pdf)
 -
 
-Guide d'utilisation :           A modifié
+Guide d'utilisation :        
 
-Ouvrez votre terminal:                                                                                              
-Naviguez jusqu'au répertoire de votre projet à l'aide de la commande cd : exemple: "cd chemin/vers/votre_projet"                                                                  
-Utilisez la commande make pour compiler le programme : "make"                                                                                                                                               
-Utilisez la commande make run pour lancer le programme :"make run"                                                                                
-deplus pour accompagner votre experience et votre patience pendant le chargement des traitements , nous vous invitons à ecouter cette musique:
+1-Ouvrez votre terminal:                                                                                                                                                      
+2-Utilisez la commande make run pour lancer le programme :"bash main.sh data.csv <option>"                                                                                
+3-deplus pour accompagner votre experience et votre patience pendant le chargement des traitements ,nous vous invitons à ecouter cette musique:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Commande utilile:
@@ -33,18 +31,6 @@ Commande utilile:
 Planning: faire le choix
 --
 
-| Semaine             | Tâches                                                            |
-|---------------------|-------------------------------------------------------------------|
-| 11/12               | Découverte du projet.                                            |
-| 18/12               | Première approche du code en Shell avec les traitements D1 et D2. |
-| 25/12               | Amélioration des traitements D1 et D2, début de la réflexion sur le traitement L. |
-| 01/01               | Traitement L amélioré, commencement de la réflexion pour les traitements T et S. |
-| 08/01               | Amélioration des traitements T et S.                             |
-| 15/01               | Finalisation de tous les traitements.                            |
-| 22/01               | Réajustement du projet et codage du Makefile.                    |
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 | Semaine             | Tâches                                                                       |
 |---------------------|------------------------------------------------------------------------------|
 | 4/12                | Début du main.sh et répartition des tâches dans le groupe.                   |
@@ -56,6 +42,10 @@ Planning: faire le choix
 | 15/01               | Partie Shell du Traitement T.                                               |
 | 22/01               | Makefile et fin du main.sh.                                                 |
 | 29/01               | Amélioration et résolution des dernières erreurs de nos codes.               |
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 RAJOUTER CE QUI NE MARCHE PAS TRES BIEN OU PAS DU tout
@@ -79,20 +69,7 @@ GnuPlot: fait par Naëla BENMOHAMED
 
 Makefile : fait par Myriam SAADI
 
-Naëla BENMOHAMED et Myriam SAADI (moi) avons travaillé ensemble plusieurs fois, notamment en visio, car Naëla avait des difficultés à coder en C sur son ordinateur personnel et j'avais des difficultés à coder en shell sur le mien.
-
-
-Planning de réalisation
-
-semaine du 4 Décembre: Début du main.sh et répartitions des tâches dans le groupe
-semaine du 11 Décembre: Continuation du main.sh et début du traitement D1
-semaine du 18 Décembre: Traitements D1, D2 et L
-semaine du 25 Décembre: Début des Traitement T et S
-semaine du 1 Janvier: Partie C  (AVL) du Traitement T 
-semaine du 8 Janvier: Début de la partie Shell du Traitement T et début de la partie C du traitement S
-semaine du 15 Janvier: Partie Shell du Traitement T
-semaine du 22 Janvier: Makefile et fin du main.sh
-semaine du 29 Janvier: Amélioration et résolution des dernières erreurs de nos codes
+Naëla BENMOHAMED et Myriam SAADI avons travaillé ensemble plusieurs fois, notamment en visio, car Naëla avait des difficultés à coder en C sur son ordinateur personnel et j'avais des difficultés à coder en shell sur le mien.
 
 Limitations fonctionnelles de notre application 
 
